@@ -3,4 +3,4 @@ name = gets.chomp
 
 puts "hello #{name} world"
 #adding comment
-puts "changes"
+puts "changes update"
