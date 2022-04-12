@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.8.1)
+    emoji_regex (3.2.3)
     pastel (0.8.0)
       tty-color (~> 0.5)
     strings-ansi (0.2.0)
@@ -28,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   colorize (~> 0.8.1)
+  emoji_regex
   tty-progressbar (~> 0.18.2)
   tty-prompt (~> 0.23.1)
 
