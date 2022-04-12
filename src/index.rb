@@ -1,6 +1,6 @@
-puts "Hi there this is a test2"
-name = gets.chomp
+require 'emoji_regex'
+require_relative './$global_unicodes'
+require_relative './$global_var.rb'
 
-puts "hello #{name} world"
-#adding comment
-puts "changes update"
+puts $apple
+puts $dragon
