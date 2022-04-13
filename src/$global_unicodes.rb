@@ -6,5 +6,5 @@ TEXT
 
 
 $dragon = <<TEXT
-\u{1F409} "This is a dragon"
+\u{1F409}
 TEXT
