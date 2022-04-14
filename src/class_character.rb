@@ -10,7 +10,14 @@ class Character
     end
     def to_s
         return "#{@race} = #{@special_ability}: #{@level}"
-    end 
+    end
+    
+    def print_characters
+        @race.each do |race|
+            race
+        end
+    end
+    
 
 
 end
