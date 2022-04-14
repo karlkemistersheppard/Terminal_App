@@ -1,1 +1,1 @@
-$apple = 10
+$book_reader = "Eternity"
