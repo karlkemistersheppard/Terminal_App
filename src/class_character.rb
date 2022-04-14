@@ -2,6 +2,7 @@
 
 
 class Character
+    attr_accessor :race
 
     def initialize(race, special_ability, level)
         @race = race
@@ -18,6 +19,4 @@ class Character
         end
     end
     
-
-
 end
