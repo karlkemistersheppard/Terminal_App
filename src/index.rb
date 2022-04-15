@@ -19,42 +19,54 @@ choice = start
 # print choice
 
 #Beginging of the Story
-puts "Welcome to Dragon Slayer"
+$process_id = spawn "afplay It_Is_Coming_-_David_Fesliyan.mp3" 
+                                         
+puts "
+██████╗     ██████╗      █████╗      ██████╗      ██████╗     ███╗   ██╗    ███████╗
+██╔══██╗    ██╔══██╗    ██╔══██╗    ██╔════╝     ██╔═══██╗    ████╗  ██║    ██╔════╝
+██║  ██║    ██████╔╝    ███████║    ██║  ███╗    ██║   ██║    ██╔██╗ ██║    ███████╗
+██║  ██║    ██╔══██╗    ██╔══██║    ██║   ██║    ██║   ██║    ██║╚██╗██║    ╚════██║
+██████╔╝    ██║  ██║    ██║  ██║    ╚██████╔╝    ╚██████╔╝    ██║ ╚████║    ███████║
+╚═════╝     ╚═╝  ╚═╝    ╚═╝  ╚═╝     ╚═════╝      ╚═════╝     ╚═╝  ╚═══╝    ╚══════╝
+
+                    ██╗          █████╗     ██╗    ██████╗
+                    ██║         ██╔══██╗    ██║    ██╔══██╗
+                    ██║         ███████║    ██║    ██████╔╝
+                    ██║         ██╔══██║    ██║    ██╔══██╗
+                    ███████╗    ██║  ██║    ██║    ██║  ██║
+                    ╚══════╝    ╚═╝  ╚═╝    ╚═╝    ╚═╝  ╚═╝
+".red
+puts "\n"
+puts "\n"
+puts "Welcome to Dragons Lair"
 puts "So can tell your fellow citizens of your adventure, please tell me your name"
 $character_name = gets.chomp.magenta
 
 #TTY Prompt to for user to interact and create character.
-
+puts "Welcome #{$character_name}, you are about to embark on a mystical journey to slay a fire breathing " + $dragon+ "Before we get started, we need to build a character"
 $prompt = TTY::Prompt.new
 
 def start_options
-    puts "Welcome #{$character_name}, you are about to embark on a mystical journey to slay a fire breathing " + $dragon+ "Before we get started, we need to build a character"
-    # answer = $prompt.select("#{start.choice}")
     answer = $prompt.select("+ ", ["Gender","Race","Tool","Potions","Exit"])
-    # answer
 end
 
 # Gender Select
 def select_gender
     gender = $prompt.select("Select your characters gender #{$gender_emoji}",$gender,["Male", "Female"])
-    # return gender
 end
 
 #Character Select
 def select_character
     race = $prompt.select("Select your race #{$character_emoji}",$character,["Witcher", "Human", "Blood Elvf", "Night Crawler", "Warthog", "Soul Reaper", "Spartan", "Iron Dwarf", "Kree Warrior"])
-    # return race
 end
 
 #Tool Select
 def select_tool
     tool = $prompt.select("Select a Tool #{$sword_emoji}",$tools,["Infinity Gauntlet","Darkhold Blade", "Mjolnir", "Gold Fist", "Liquid Sword", "nothing"])
-    return tool
 end
 #Potion Select
 def select_potion
     potion = $prompt.select("Select a potion #{$potion_emoji}",$potion,["Wolf Blood", "Vital Essence", "Oort Brew", "Soul Dealer", "Dragon Breath"])
-    # return potion
 end
 
 
@@ -90,42 +102,83 @@ bar = TTY::ProgressBar.new("Preparing your Adventure [:bar]".colorize(:blue), to
 end
 puts "\n"
 
-#Start of the adventure
+# Start of the adventure
 puts "#{$character_name} can you hear me....." + "wispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
-puts "You have arrived..."
-puts "In front of you is a dark forest, everyone that has entered has never been seen again"
+sleep(4)
+puts "You have arrived In front of you is a dark forest, there are myths that told around the town that anyone that has entered the forest has never been seen again"
+sleep(3)
 puts "You need to decide which direction you want to take? "
 
 # Method for First Choice
-$prompt = TTY::Prompt.new
-
-def choice1
-choice1 = $prompt.select("What path do you want to take?", %w(Left Right))
+puts "You have a choice... take the path to the left or the right? (type left or right)"
+user_choice1 = gets.chomp
+system "clear"
+if user_choice1 == "left"
+    puts "You have decided to take the left path"
+elsif user_choice1 == "right"
+    puts "You have decided to take the right path"
 end
 
-choice1 = data_character[0]
+if user_choice1 == "left"
+    puts "You walk for 1 day until you reach a cliff.  You look over to the otherside of the canyon and notice a old bridge that leads to where you need to go, BUT the bridge looks like it might break..."
+    puts "Do you want to take the chance and cross the bridge? yes/no"
+    user_choice1_left = gets.chomp
+    system "clear"
 
-print choice1
+    if user_choice1_left == "yes"
+        puts "You step out onto the bridge, and the support rope breaks... and you have fallen to your death #{$death_emoji}(Restart Game)"
+        system("killall afplay")
+        return
+    elsif user_choice1_left == "no"
+        puts "You look around and notice a narrow path that leads to a cave and decide to take that path."
+        puts "You finally make your way through the cave and walk out into the light.  Across the field you see a tavern on the otherside of the river"
+    end
+end
 
+# Methoid for First Choice END
 
+if user_choice1 == "right" || user_choice1_left == "no"
+    puts "You walk across the field until you reach a river"
+    puts "Do you wish to cross the river? yes/no"
+    user_choice_river = gets.chomp
+end
+system "clear"
 
+if user_choice_river == "yes"
+    puts "You cross the river and find a tavern on the otherside offering free beverages"
+    puts "You take the offer and head inside"
+    puts "You are greated by a old lady that looks like a Witch but she offers you a glass of water from a bucket or a wine left over from merchant."
+    puts "You are thirsty, so you choose? water/wine (type water or wine)"
+    user_choice_beverage = gets.chomp
+    system "clear"
+elsif user_choice_river == "no"
+    puts "You decide to not to cross, but didnt realise that you where poisoned by something in the forest.... your only option is to take the #{$potion} you have, but it poisons you resulting in your DEATH #{$death_emoji}(Restart Game)"
+    system("killall afplay")
+    return
+end
 
+    if user_choice_beverage == "water"
+        puts "You drink the water and immediatly feel strange...."
+        puts "The old lady laughs, and you realise she poisened the water"
+        puts "Moments later you die from the poison"
+        system("killall afplay")
+        return
+    end
 
+    if user_choice_beverage == "wine"
+        puts "You drink the wine, and feel refreshed"
+        puts "You have a rest for 10 min, then head out to continue on your adventure"
+    end
+    system "clear"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+puts "After half a days walk you finally across slinters ridge and up lightning mountain you arrive at the enterance to the Dragons Lair"
+sleep(4)
+puts "As you walk up to the cave you cant ignore the fear in your starting to feel in your chest"
+puts "But you tell yourself, i must go on..."
+sleep(2)
+Process.kill("SIGKILL", $process_id)
+process_id = spawn "afplay Walking_into_Dungeon.mp3"
+puts "As you walk up to the main enterance to the dungeon and past the wet dripping walls, you notice a large door begins to open......... as you walk though the door closes behind you and locks."
 
 
 # Riddle 1
@@ -167,6 +220,7 @@ end
 if out_of_guesses #calls in the out ofguesses variable
 puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
 puts "Restart Game"
+system("killall afplay")
 return #Terminates the Game
 else
 
@@ -175,6 +229,7 @@ puts "Please take your #{$key_emoji}"
 end
 puts "\n"
 puts "\n"
+
 #Riddle 2
 correct_answer = "echo"
 user_guess = ""
@@ -206,6 +261,7 @@ end
 if out_of_guesses #calls in the out ofguesses variable
 puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
 puts "Restart Game"
+system("killall afplay")
 return #Terminates the Game
 else
 
@@ -214,6 +270,7 @@ puts "Please take your #{$key_emoji}"
 end
 puts "\n"
 puts "\n"
+
 #Riddle 3
 correct_answer = "fire"
 user_guess = ""
@@ -247,6 +304,7 @@ end
 if out_of_guesses #calls in the out ofguesses variable
 puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
 puts "Restart Game"
+system("killall afplay")
 return #Terminates the Game
 else
 
@@ -257,26 +315,27 @@ puts "Please take your #{$key_emoji}"
 end
 puts "\n"
 puts "\n"
-bar = TTY::ProgressBar.new("Intert your first key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
+bar = TTY::ProgressBar.new("Insert your first key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
 1.times do
-  sleep(0.1)
+  sleep(0.5)
   bar.advance  # by default increases by 1
 end
+process_id = spawn "afplay unlock.mp3"
 sleep(1)
-bar = TTY::ProgressBar.new("Intert your second key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
+bar = TTY::ProgressBar.new("Insert your second key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
 1.times do
-  sleep(0.1)
+  sleep(0.5)
   bar.advance  # by default increases by 1
 end
+process_id = spawn "afplay unlock.mp3"
 sleep(1)
-bar = TTY::ProgressBar.new("Intert your third key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
+bar = TTY::ProgressBar.new("Insert your third key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
 1.times do
-  sleep(0.1)
+  sleep(0.5)
   bar.advance  # by default increases by 1
 end
+process_id = spawn "afplay unlock.mp3"
 sleep(1)
-puts "\n"
-
 
 #====================inserting keys end=====================================
 
@@ -287,9 +346,24 @@ bar = TTY::ProgressBar.new("Unlocking Secret Door [:bar]".colorize(:blue), total
   bar.advance  # by default increases by 1
 end
 puts "\n"
+sleep(1)
 puts "The door is open says #{$book_reader.yellow}"
+sleep(1)
 puts "No one has ever got this far and survived......"
 puts "You walk in, and are dazzled by the moutains of #{$treasure_emoji}" 
-sleep(2)
+sleep(3)
 puts "\n"
-puts ""
+
+process_id = spawn "afplay Dragon.mp3"
+
+
+
+
+
+
+
+
+
+
+sleep(12)
+system("killall afplay")
