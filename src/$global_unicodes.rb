@@ -58,3 +58,9 @@ TEXT
 $treasure_emoji = <<TEXT
 \u{2728}\u{1F451}\u{1F48E}\u{2728}
 TEXT
+
+
+$copyright_emoji = <<TEXT
+\u{A9}
+TEXT
+
