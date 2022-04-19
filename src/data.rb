@@ -4,6 +4,7 @@ require_relative"./class_character.rb"
 require_relative("./class_gender.rb")
 require_relative("./class_tools.rb")
 require_relative("./class_potion.rb")
+require_relative("./methods.rb")
 
 def start
     choice = []
@@ -68,5 +69,3 @@ def data_potion
     fire_breath = Potion.new("fire breather","breath fire")
     potion = ["wolf_blood", "vital_essence", "oort_brew", "soul_dealer", "fire_breath"]
 end
-
-
