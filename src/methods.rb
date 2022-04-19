@@ -43,7 +43,38 @@ def tty_prompt_start
     end
 end
 
+def user_choice1
+    if user_choice1 == "left"
+        puts "You take the left path"
+    elsif user_choice1 == "right"
+        puts "You take the right path"
+    end
+end
 
+def user_choice_bridge
+    if user_choice1 == "left"
+        puts "You walk for 1 day until you reach a cliff #{$mountain_cliff}."  
+        puts "You look over to the otherside of the canyon and notice a old bridge that leads to where you need to go, BUT the bridge looks like it might break..."
+        puts "Do you want to take the chance and cross the bridge?" + " (yes/no)".green
+        user_choice1_left = STDIN.gets.chomp
+        system "clear"
+
+        if user_choice1_left == "yes"
+            puts "You step out onto the bridge, and the support rope breaks... and you have fallen to your death #{$death_emoji}" + "(Restart Game)".red
+            sleep(4)
+            system "clear"
+            puts $try_again
+            # Process.kill("SIGKILL", $process_id)
+            $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
+            # system("killall afplay")
+            return
+        elsif user_choice1_left == "no"
+            puts "You look around and notice a narrow path that leads to a cave near some large trees #{$tree}."
+            puts "#{$character_name} you have finally made your way through the cave and walk out into the light."  
+            puts "Across the field you see a creepy tavern on the otherside of a rocky river"
+        end
+    end
+end
 
 
 
