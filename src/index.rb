@@ -1,10 +1,18 @@
-
 require 'emoji_regex'
-require 'colorize' #puts "This is green".green
+require 'colorize'
 require 'tty-prompt'
 require 'tty-progressbar'
-
 require_relative "./data.rb"
+
+#ARGV COMMAND LINE ARGUMENT====================
+game_title = "Dragons Lair"
+user_name = "Name"
+
+game_title = ARGV[0] if ARGV[0]
+user_name = ARGV[1] if ARGV[1]
+
+puts "Welcome to #{game_title}, fellow warrior #{user_name}!"
+#ARGV COMMAND LINE ARGUMENT==========END==========
 
 character = data_character
 gender = data_gender
@@ -12,31 +20,17 @@ tools = data_tools
 potion = data_potion
 choice = start
 
-#Checking Method Arrays are Working
-# print character
-# puts gender[0,1]
-# print tools
-# print potion
-# print choice
-puts "Hello are your ready to play a game..."
 #LOGO AND INTRO MUSIC ========================================================================================================================================
 $process_id = spawn "afplay -v 0.2 It_Is_Coming_-_David_Fesliyan.mp3" 
-                                         
+puts "\n""\n""\n"                                         
 puts $dragon_lair_logo
-
-
-# LOGO END  ========================================================================================================================================
-
-
+#LOGO AND INTRO MUSIC====================================================END====================================================================================
 # USER NAME========================================================================================================================================
-puts "Welcome to Dragons Lair"
 puts "So can tell your fellow citizens about your adventure, please enter a unique character name."
-
-#USER NAME========================================================================================================================================
-
-$character_name = gets.chomp.magenta
-#TTY Prompt to for user to interact and create character=========================================================================================================================================
+$character_name = STDIN.gets.chomp
+#INTRO MESSAGE========================================================================================================================================
 puts "Welcome #{$character_name}, you are about to embark on a mystical journey to slay a fire breathing " + $dragon+ "Before we get started, we need to build a character"
+#TTY PROMPT=========================================================================================================================================
 $prompt = TTY::Prompt.new
 
 def start_options
@@ -69,24 +63,19 @@ while option != "Exit"
     case option
     when "Gender"
         gender = select_gender
-        # puts gender
     when "Race"
         race = select_character
-        # puts race
     when "Tool"
         tool = select_tool
-        # puts tool
     when "Potions"
         potion = select_potion
-        # puts potion
     else
     puts "Exit"
     end
 end
-#TTY Prompt to for user to interact and create character END =========================================================================================================================================
+#TTY PROMPT===================================================END======================================================================================
 
 #DOWNLOADING BAR========================================================================================================================================
-
 system "clear"
 puts "Congratulations #{$character_name}, you are the first #{gender} #{race} to embank on such a dangerous journey, you have decided to grab #{tool} as your tool to protect youself with and have 1 vial of #{potion} #{$potion_emoji}"
 puts "\n"
@@ -95,10 +84,8 @@ bar = TTY::ProgressBar.new("Preparing your Adventure [:bar]".colorize(:blue), to
   sleep(0.1)
   bar.advance  # by default increases by 1
 end
-#DOWNLOADING BAR========================================================================================================================================
-
+#DOWNLOADING BAR================================================END========================================================================================
 puts "\n"
-
 #START OF THE ADVENTURE ========================================================================================================================================
 puts "#{$character_name} can you hear me....." + "wispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
 sleep(4)
@@ -109,22 +96,19 @@ puts "You need to decide which direction you want to take? "
 
 #FIRST PATH CHOICE========================================================================================================================================
 puts "You have a choice... take the path to the left or the right? (type left or right)"
-user_choice1 = gets.chomp
+user_choice1 = STDIN.gets.chomp
 system "clear"
 if user_choice1 == "left"
     puts "You have decided to take the left path"
 elsif user_choice1 == "right"
     puts "You have decided to take the right path"
 end
-#FIRST PATH CHOICE END========================================================================================================================================
-
-
+#FIRST PATH CHOICE====================================================END====================================================================================
 #LEFT PATH MAIN=======================================================================================================================================
-
 if user_choice1 == "left"
     puts "You walk for 1 day until you reach a cliff.  You look over to the otherside of the canyon and notice a old bridge that leads to where you need to go, BUT the bridge looks like it might break..."
     puts "Do you want to take the chance and cross the bridge? yes/no"
-    user_choice1_left = gets.chomp
+    user_choice1_left = STDIN.gets.chomp
     system "clear"
 
     if user_choice1_left == "yes"
@@ -141,13 +125,12 @@ if user_choice1 == "left"
         puts "You finally make your way through the cave and walk out into the light.  Across the field you see a tavern on the otherside of the river"
     end
 end
-
 # Methoid for First Choice END
 
 if user_choice1 == "right" || user_choice1_left == "no"
     puts "You walk across the field until you reach a river"
     puts "Do you wish to cross the river? yes/no"
-    user_choice_river = gets.chomp
+    user_choice_river = STDIN.gets.chomp
 end
 system "clear"
 
@@ -156,7 +139,7 @@ if user_choice_river == "yes"
     puts "You take the offer and head inside"
     puts "You are greated by a old lady that looks like a Witch but she offers you a glass of water from a bucket or a wine left over from merchant."
     puts "You are thirsty, so you choose? water/wine (type water or wine)"
-    user_choice_beverage = gets.chomp
+    user_choice_beverage = STDIN.gets.chomp
     system "clear"
 elsif user_choice_river == "no"
     puts "You decide to not to cross, but didnt realise that you where poisoned by something in the forest.... your only option is to take the #{$potion} you have, but it poisons you resulting in your DEATH #{$death_emoji}(Restart Game)"
@@ -174,6 +157,8 @@ end
         $process_id = spawn "afplay -v 0.2 Scary_Witch.mp3" 
         sleep(2)
         puts "The old lady laughs, and you realise she poisened the water"
+        puts "You drop the cup and fall to your knees"
+        $process_id = spawn "afplay -v 0.2 item_drop.mp3" 
         puts "Moments later you die from the poison"
         sleep(4)
         system "clear"
@@ -226,7 +211,7 @@ puts "- What am I?"
 while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
     if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
     puts "Guess: "
-    user_guess = gets.chomp()
+    user_guess = STDIN.gets.chomp()
     current_count += 1 #increments their guess count by one
 
     else
@@ -271,7 +256,7 @@ puts "What am I?"
 while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
     if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
     puts "Guess: "
-    user_guess = gets.chomp()
+    user_guess = STDIN.gets.chomp()
     current_count += 1 #increments their guess count by one
 
     else
@@ -318,7 +303,7 @@ puts "What am I?"
 while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
     if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
     puts "Guess: "
-    user_guess = gets.chomp()
+    user_guess = STDIN.gets.chomp()
     current_count += 1 #increments their guess count by one
 
     else
@@ -341,7 +326,7 @@ else
 #Adding keys to the locks with time delay sleep() function=========================================================
 puts "Well done #{$character_name} you have unlocked the secret passage to the Dragons Lair by guessing".green + " #{user_guess} #{$fire_emoji}".yellow, + " prepare yourself.....".green
 puts "\n"
-puts "Please take your #{$key_emoji}"
+puts "Please take yours and insert them into the key holes on the wall"
 end
 puts "\n"
 puts "\n"
@@ -380,7 +365,7 @@ sleep(1)
 puts "The door is open says #{$book_reader.yellow}"
 sleep(1)
 puts "No one has ever got this far and survived......"
-puts "You walk in, and are dazzled by the moutain of treasure#{$treasure_emoji} and notice something moving in the shadows....." 
+puts "You walk in, and are dazzled by the moutain of treasure and notice something moving in the shadows....." 
 sleep(3)
 puts "\n"
 
@@ -391,7 +376,7 @@ puts "ITS A DRAGON..."
 
 
 puts "You have a choice... you can either run to the left or the right...(type left or right)"
-user_choice_dragon = gets.chomp
+user_choice_dragon = STDIN.gets.chomp
 system "clear"
 if user_choice_dragon == "left"
     puts "You have decided to run to the left"
@@ -405,7 +390,7 @@ if user_choice_dragon == "left"
     puts "You hear the dragons wings flap and you freeze"
     puts "Before you realise the dragon is standing in front of you"
     puts "Do you pull use the #{$tool} and attack the dragon? yes/no"
-    user_choice_attack = gets.chomp
+    user_choice_attack = STDIN.gets.chomp
     
 
     if user_choice_attack == "yes" && potion != "Dragon Breath"
@@ -431,12 +416,14 @@ if user_choice_dragon == "left"
         puts "You relise that you have survived the first blast from the dragon due to the #{potion} potion you selected at the beginning of your journey"
         puts "You now have to decide your fate as you realise that the potion is used its life."
         puts "Do you wish ask for forgivness from the dragon and offer your service? yes/no" 
-        second_chance = gets.chomp  
+        second_chance = STDIN.gets.chomp  
     end
 end   
     
     if second_chance == "yes"
-        puts "You bend the knee and drop the #{$tool} and ask for forgivness from the dragon"
+        puts "You bend the knee and drop the #{$tool}"
+        $process_id = spawn "afplay -v 0.2 item_drop.mp3"
+        puts "and ask for forgivness from the dragon"
         puts "The dragon excepts your offer and allows you to live"
         puts "\n""\n""\n"
         sleep(3)
@@ -479,7 +466,7 @@ if user_choice_dragon == "right"
     puts "Before you realise the dragon is standing in front of you waiting for your next move"
     sleep(3)
     puts "Do you pull use the #{$tool} and attack the dragon? yes/no"
-    user_choice_attack = gets.chomp
+    user_choice_attack = STDIN.gets.chomp
 
     if user_choice_attack == "no" && potion != "Dragon Breath"
         puts "You decide to drink the #{potion} and you start to feel strange..."

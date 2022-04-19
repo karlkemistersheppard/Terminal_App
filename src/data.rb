@@ -28,19 +28,19 @@ def data_character
 end
 
 # #     #Characters Objects
-# def data_character
-#     witcher = Character.new("witcher","strength", "1200")
-#     human = Character.new("human","vision", "500")
-#     blood_elvf = Character.new("blood_elf","extra life", "600")
-#     night_crawler = Character.new("night crawler","invisability", "400")
-#     warthog = Character.new("worthog","power slam", "300")
-#     soul_reaper = Character.new("soul reaper","soul harvesting", "400")
-#     spartan = Character.new("spartan","speed", "100")
-#     iron_dwarf = Character.new("iron dwarf","deflective shield", "300")
-#     kree_warrior = Character.new("kree warrior","strength", "200")
-#     character = ["witcher", "human", "blood_elvf", "night_crawler", "warthog", "soul_reaper", "spartan", "iron_dwarf", "kree_warrior"]
-
-# end
+def data_character
+    witcher = Character.new("witcher","strength", "1200")
+    human = Character.new("human","vision", "500")
+    blood_elvf = Character.new("blood_elf","extra life", "600")
+    night_crawler = Character.new("night crawler","invisability", "400")
+    warthog = Character.new("worthog","power slam", "300")
+    soul_reaper = Character.new("soul reaper","soul harvesting", "400")
+    spartan = Character.new("spartan","speed", "100")
+    iron_dwarf = Character.new("iron dwarf","deflective shield", "300")
+    kree_warrior = Character.new("kree warrior","strength", "200")
+    character = ["witcher", "human", "blood_elvf", "night_crawler", "warthog", "soul_reaper", "spartan", "iron_dwarf", "kree_warrior"]
+    # return character
+end
     
 # # #Gender Objects
 def data_gender    

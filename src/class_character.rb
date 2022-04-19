@@ -8,6 +8,7 @@ class Character
         @race = race
         @special_ability = special_ability
         @level = level
+        # @character = []
     end
     def to_s
         return "#{@race} = #{@special_ability}: #{@level}"
@@ -20,3 +21,4 @@ class Character
     end
     
 end
+
