@@ -31,3 +31,4 @@ scary witch laugh https://quicksounds.com/sound/8839/scary-witch-cackle
 Knife sound effect https://quicksounds.com/sound/17708/knife-fall-on-metal-ground-2
 Fail sound effect https://quicksounds.com/sound/323/sad-trombone-wah-wah-wah-fail
 Unsplash image used for SlideDeck [ONLINE] available at [https://unsplash.com/photos/zQMN9fLJehM?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink] viewed 18.04.2022.
+How to force exit [ONLINE] available at [https://www.rubyguides.com/2019/03/ruby-exit/] viewed 20.04.2022

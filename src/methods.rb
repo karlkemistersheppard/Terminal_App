@@ -17,8 +17,6 @@ def tty_prompt_instructions
         ",$about,["Exit",])
     end
     
-    
-    system "clear"
     option =""
     while option != "Exit"
         option = start_options
@@ -29,6 +27,7 @@ def tty_prompt_instructions
         puts "Exit"
         end
     end
+    system "clear"
 end
 
 
@@ -79,6 +78,20 @@ def tty_prompt_start
     end
 end
 
+def intro_story
+    puts "#{$character_name} can you hear me....." + "wispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
+    sleep(4)
+    puts "Fearless #{$race} you have arrived at your first destination, you are standing In front of Blood Moons Forest and tonight the moon is alive #{$moon}" 
+    puts "The trees are talking, and you try to forget about the myths you have heared......" 
+    puts "#{$book_reader.yellow}" + " wispers anyone that has entered the forest has never been seen again".italic
+    puts "\n"
+    sleep(3)
+    puts "Your now have to decide which direction you want to take? "
+end
+
+
+
+
 def user_choice1
     if $user_choice1 == "left"
         puts "You take the left path"
@@ -95,22 +108,29 @@ def user_choice_bridge
         puts "Do you want to take the chance and cross the bridge?" + " (yes/no)".green
         $user_choice1_left = STDIN.gets.chomp
         system "clear"
-
-        if $user_choice1_left == "yes"
-            puts "You step out onto the bridge, and the support rope breaks... and you have fallen to your death #{$death_emoji}" + "(Restart Game)".red
-            sleep(4)
-            system "clear"
-            puts $try_again
-            # Process.kill("SIGKILL", $process_id)
-            $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-            # system("killall afplay")
-            return
-        elsif $user_choice1_left == "no"
-            puts "You look around and notice a narrow path that leads to a cave near some large trees #{$tree}."
-            puts "#{$character_name} you have finally made your way through the cave and walk out into the light."  
-            puts "Across the field you see a creepy tavern on the otherside of a rocky river"
-        end
     end
+end
+
+
+def user_choice_bridge_answer
+    if $user_choice1_left == "yes"
+        puts "You step out onto the bridge, and the support rope breaks... and you have fallen to your death #{$death_emoji}" + "(Restart Game)".red
+        sleep(4)
+        system "clear"
+        Process.kill("SIGKILL", $process_id)
+        puts $try_again
+        $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+        begin
+            exit!
+          rescue SystemExit
+            p 123
+          end
+        return
+    elsif $user_choice1_left == "no"
+        puts "You look around and notice a narrow path that leads to a cave near some large trees #{$tree}."
+        puts "#{$character_name} you have finally made your way through the cave and walk out into the light."  
+        puts "Across the field you see a creepy tavern on the otherside of a rocky river"
+    end  
 end
 
 #RIVER CROSS QUESTION- not working
@@ -121,11 +141,6 @@ def river_cross
         $user_choice_river = STDIN.gets.chomp
     end
 end
-
-
-
-
-
 
 def river_cross_answer
     if $user_choice_river == "yes"
@@ -146,8 +161,12 @@ def river_cross_answer
         system "clear"
         Process.kill("SIGKILL", $process_id)
         puts $try_again
-        $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-        # system("killall afplay")
+        $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+        begin
+            exit!
+          rescue SystemExit
+            p 123
+          end 
         return
     end
 end
@@ -165,18 +184,19 @@ def beverage_choice
         puts "Moments later you die from the poison"
         sleep(4)
         system "clear"
-        puts $try_again
         Process.kill("SIGKILL", $process_id)
-        system("killall afplay")
-        $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
+        puts $try_again
+        $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+        begin
+            exit!
+          rescue SystemExit
+            p 123
+          end 
         return
-    
-    
     elsif $user_choice_beverage == "wine"
         puts "You take a seat and finish your wine #{$wine}"
         puts "But before you know it you have leave to continue on your adventure"
     end
-    
     system "clear"
 end
 
@@ -237,6 +257,7 @@ def tty_progress_key_audio
     process_id = spawn "afplay unlock.mp3"
 end
 
+#UNLOCKING SECRET DOOR
 def unlock_secret_door
     bar = TTY::ProgressBar.new("Unlocking Secret Door [:bar]".colorize(:blue), total: 35) # Added TTY Progress bar showing quiz is downloading for UX
         45.times do
@@ -247,8 +268,6 @@ end
 
 def dragon_encounter
     puts "ITS A DRAGON..."
-
-
     puts "You have a choice... you can either run to the left or the right...(type left or right)"
     $user_choice_dragon = STDIN.gets.chomp
     system "clear"
@@ -282,10 +301,14 @@ def dragon_run_direction_left
         if $user_choice_attack == "yes" && $potion != "Dragon Breath"
             puts "You attempt to use the #{$tool} on the dragon but before you can do anyhting it swips you off your feet and burns you with its firey breath..... #{$death_emoji}(Restart Game)"
             # system "clear"
-            puts $try_again
             Process.kill("SIGKILL", $process_id)
-            $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-            system("killall afplay")
+            puts $try_again
+            $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+            begin
+                exit!
+              rescue SystemExit
+                p 123
+              end 
             return
         #Second Chance Life BASED on Potion Selection..
         elsif $user_choice_attack == "yes" && $potion == "Dragon Breath"
@@ -316,28 +339,40 @@ def dragon_run_direction_left
             # system "clear"
             puts $thank_you
             Process.kill("SIGKILL", $process_id)
-            $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-            system("killall afplay")
+            # system("killall afplay")
+            begin
+                exit!
+              rescue SystemExit
+                p 123
+              end
             return
         elsif $second_chance == "no"
-            puts "The dragon swoops in and eats you #{$death_emoji}(Restart Game)"
-            # system "clear"
-            puts $try_again
-            Process.kill("SIGKILL", $process_id)
-            $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-            system("killall afplay")
-            return
+                puts "The dragon swoops in and eats you #{$death_emoji}(Restart Game)"
+                # system "clear"
+                Process.kill("SIGKILL", $process_id)
+                puts $try_again
+                $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+                begin
+                    exit!
+                  rescue SystemExit
+                    p 123
+                  end 
+                return
     
-        elsif $user_choice_attack == "no"
-            puts "You drop the #{$tool} on the floor and tell the dragon you are there to offer your protection"
-            puts "The dragon sits back and agrees to the offer, and allows you safe passage in and out of the lair"
-            sleep(3)
-            # system "clear"
-            puts $thank_you
-            Process.kill("SIGKILL", $process_id)
-            $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-            system("killall afplay")
-            return
+        elsif  $user_choice_attack == "no"
+                puts "You drop the #{$tool} on the floor and tell the dragon you are there to offer your protection"
+                puts "The dragon sits back and agrees to the offer, and allows you safe passage in and out of the lair"
+                sleep(3)
+                # system "clear"
+                puts $thank_you
+                Process.kill("SIGKILL", $process_id)
+                # system("killall afplay")
+                begin
+                    exit!
+                  rescue SystemExit
+                    p 123
+                  end
+                return
     end
 end
 #DRAGON RUN DIRECTION LEFT END
@@ -366,55 +401,69 @@ def dragon_run_direction_right
             sleep(3)
             puts "The dragon ate you"
             # system "clear"
+            Process.kill("SIGKILL", $process_id)
             puts $try_again
-            Process.kill("SIGKILL", $process_id)
-            $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-            system("killall afplay")
+            $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+            begin
+                exit!
+              rescue SystemExit
+                p 123
+              end 
             return
         
-        elsif $user_choice_attack == "no" && $potion == "Dragon Breath"
-            puts "You decide to drink the #{$potion} and you start to feel strange..."
-            sleep(2)
-            puts "Something is wrong.."
-            sleep(3)
-            puts "You ears start to hurt, what is going on.... but wait you start to hear something, its a voice..."
-            sleep(4)
-            puts "Its.... the dragon the potion has given you the ability to hear its voice"
-            sleep(3)
-            puts "You speak, and the dragon takes a step back"
-            sleep(2)
-            puts "The dragon is amazed... YOU CAN UNDERSTAND ME it says"
-            sleep(3)
-            puts "Yes.. my name is #{$character_name}, i am a #{$race} from a town across the valley, i am here to protect you"
-            sleep(2)
-            puts "I was sent on this quest to find you"
-            puts "You decide to ..........."
-            
-            sleep(8)
-            puts $to_be_continued
-            Process.kill("SIGKILL", $process_id)
-            system("killall afplay")
-            return
+        elsif  $user_choice_attack == "no" && $potion == "Dragon Breath"
+                puts "You decide to drink the #{$potion} and you start to feel strange..."
+                sleep(2)
+                puts "Something is wrong.."
+                sleep(3)
+                puts "You ears start to hurt, what is going on.... but wait you start to hear something, its a voice..."
+                sleep(4)
+                puts "Its.... the dragon the potion has given you the ability to hear its voice"
+                sleep(3)
+                puts "You speak, and the dragon takes a step back"
+                sleep(2)
+                puts "The dragon is amazed... YOU CAN UNDERSTAND ME it says"
+                sleep(3)
+                puts "Yes.. my name is #{$character_name}, i am a #{$race} from a town across the valley, i am here to protect you"
+                sleep(2)
+                puts "I was sent on this quest to find you"
+                puts "You decide to ..........."
+                sleep(8)
+                puts $to_be_continued
+                Process.kill("SIGKILL", $process_id)
+                # system("killall afplay")
+                begin
+                    exit!
+                  rescue SystemExit
+                    p 123
+                  end
+                return
         
-            
         elsif $user_choice_attack == "yes" && $potion == "Dragon Breath"
                 puts "You attempt to use the .... you died#{$death_emoji}(Restart Game)"
                 # system "clear"
+                Process.kill("SIGKILL", $process_id)
                 puts $try_again
-                # Process.kill("SIGKILL", $process_id)
-                $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-                system("killall afplay")
+                $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+                begin
+                    exit!
+                  rescue SystemExit
+                    p 123
+                  end 
                 return
+
         elsif $user_choice_attack == "yes" && $potion != "Dragon Breath"
                 puts "You attempt to use the #{$potion} but before you can drink it the dragon eats you"
                 # system "clear"
+                Process.kill("SIGKILL", $process_id)
                 puts $try_again
-                # Process.kill("SIGKILL", $process_id)
-                $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-                system("killall afplay")
+                $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+                begin
+                    exit!
+                  rescue SystemExit
+                    p 123
+                  end 
                 return
-                
-    
         end
     end
 end
