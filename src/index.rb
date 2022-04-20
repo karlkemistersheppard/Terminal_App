@@ -1,10 +1,16 @@
+
+#RUBY GEMS IMPORT FUNCTIONS FROM GEMFILE
 require 'emoji_regex'
 require 'colorize'
 require 'tty-prompt'
 require 'tty-progressbar'
-require_relative "./data.rb"
+#END
 
-#ARGV COMMAND LINE ARGUMENT====================
+#IMPORT DATA.RB FILE THAT CONTAINS LINKS TO .RB FILES FOR THE PROGRAM
+require_relative "./data.rb"
+#END
+
+#ARGV COMMAND LINE ARGUMENT
 game_title = "Dragons Lair"
 user_name = "Name"
 
@@ -12,7 +18,7 @@ game_title = ARGV[0] if ARGV[0]
 user_name = ARGV[1] if ARGV[1]
 
 puts "Welcome to #{game_title}, fellow warrior #{user_name}!"
-#ARGV COMMAND LINE ARGUMENT==========END==========
+#END
 
 character = data_character
 gender = data_gender
@@ -20,30 +26,41 @@ tools = data_tools
 potion = data_potion
 choice = start
 
+#HOW TO PLAY TTY-PROMPT
 puts tty_prompt_instructions
-#LOGO AND INTRO MUSIC ========================================================================================================================================
+#END
+
+system "clear"
+
+#LOGO AND INTRO MUSIC
 $process_id = spawn "afplay -v 0.2 It_Is_Coming_-_David_Fesliyan.mp3" 
 puts "\n""\n""\n"                                         
 puts $dragon_lair_logo
-#LOGO AND INTRO MUSIC====================================================END====================================================================================
+#END
 
 
-# USER NAME========================================================================================================================================
+# USER NAME + INTRO
 puts "So I can tell your fellow citizens about your adventure, please enter a unique character name." + " Be Creative".green
-$character_name = STDIN.gets.chomp.magenta
+$character_name = ""
+while true
+    puts "Please enter your characters name?"
+    $character_name = STDIN.gets.chomp.magenta
+    $character_name.empty? ? (puts "Character name required") : break
+end
+#END
 
-
-#INTRO MESSAGE========================================================================================================================================
+#INTRO MESSAGE + STRING INTERPOLATION & USE OF $GLOBAL VARIABLE
 puts "Welcome #{$character_name}, you are about to embark on a mystical journey to slay a fire breathing " + $dragon + "but before we get started, we need to build you a character"
+#END
 
-
-#TTY PROMPT=========================================================================================================================================
+#TTY PROMPT CHARACTER
 puts tty_prompt_start
-#TTY PROMPT===================================================END======================================================================================
+#END
 
 
-#DOWNLOADING BAR========================================================================================================================================
-# system "clear"
+#DOWNLOADING YOUR ADVENTURE BAR
+#INCLUDES CALLING $GLOBAL VARIABLES AND GEM UNICODE + TTY-PROMPT PROGRESS BAR GEM
+system "clear"
 puts "Congratulations #{$character_name}, you are the first #{$gender} #{$race} to embank on such a dangerous journey, you have decided to grab #{$tool} as your tool to protect youself and have a vial of #{$potion} #{$potion_emoji}"
 puts "\n"
 bar = TTY::ProgressBar.new("Preparing your Adventure #{$character_name} [:bar]".colorize(:blue), total: 45) # Added TTY Progress bar showing quiz is downloading for UX
@@ -51,26 +68,20 @@ bar = TTY::ProgressBar.new("Preparing your Adventure #{$character_name} [:bar]".
   sleep(0.1)
   bar.advance  # by default increases by 1
 end
-#DOWNLOADING BAR================================================END========================================================================================
+#END
 
 
-puts "\n"
-
-
-#START OF THE ADVENTURE ========================================================================================================================================
-puts "#{$character_name} can you hear me....." + "wispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
-sleep(4)
-puts "Fearless #{$race} you have arrived at your first destination, you are standing In front of Blood Moons Forest and tonight the moon is alive #{$moon}" 
-puts "The trees are talking, and you try to forget about the myths you have heared......" 
-puts "#{$book_reader.yellow}" + " wispers anyone that has entered the forest has never been seen again".italic
-puts "\n"
-sleep(3)
-puts "Your now have to decide which direction you want to take? "
+#START OF THE ADVENTURE
+puts intro_story
+#END
 
 
 #FIRST PATH CHOICE========================================================================================================================================
-puts "Choose your path #{$character_name}" + " (left/right)".green
-$user_choice1 = STDIN.gets.chomp
+#Updated from std user input to control the flow and the user by entering in a non valid input or hitting enter without selecting a true path.
+require "tty-prompt"
+$prompt = TTY::Prompt.new
+choice = %w(left right)
+$user_choice1 = $prompt.select("Choose your path #{$character_name}", choice)
 # system "clear"
 
 #FIRST CHOICE IN DIRECITONAL PATH=======================================================================================================================================
@@ -78,6 +89,7 @@ puts user_choice1
 
 #LEFT PATH MAIN=======================================================================================================================================
 puts user_choice_bridge
+puts user_choice_bridge_answer
 
 #DO YOU WISH TO CROSS THE RIVER=======================================================================================================================================
 puts river_cross
@@ -135,10 +147,15 @@ puts cave_enter
         puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
         sleep(4)
         # system "clear"
-        puts $try_again
         Process.kill("SIGKILL", $process_id)
+        puts $try_again
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-        system("killall afplay") 
+        # system("killall afplay")
+        begin
+            exit!
+          rescue SystemExit
+            p 123
+          end 
         return
     elsif
         puts "Well done #{$character_name} you have passed the first Riddle by guessing the correct answer".green + " (#{user_guess})".yellow
@@ -177,10 +194,15 @@ puts cave_enter
         puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
         sleep(4)
         system "clear"
-        puts $try_again
         Process.kill("SIGKILL", $process_id)
+        puts $try_again
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-        system("killall afplay")
+        # system("killall afplay")
+        begin
+            exit!
+          rescue SystemExit
+            p 123
+          end
         return
     else 
         puts "Well done #{$character_name} you have passed the second Riddle by guessing the correct answer ".green + "#{user_guess}".yellow
@@ -222,10 +244,15 @@ puts cave_enter
         puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
         sleep(4)
         system "clear"
-        puts $try_again
         Process.kill("SIGKILL", $process_id)
+        puts $try_again
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-        system("killall afplay")
+        # system("killall afplay")
+        begin
+            exit!
+          rescue SystemExit
+            p 123
+          end
         return
     else
         #Adding keys to the locks with time delay sleep() function=========================================================
