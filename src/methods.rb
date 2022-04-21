@@ -30,53 +30,32 @@ def tty_prompt_instructions
     system "clear"
 end
 
-
-
-
-def tty_prompt_start
+#CHARACTER CREATION MENUS
+def gender_selction
+    require "tty-prompt"
     $prompt = TTY::Prompt.new
-
-    def start_options
-        $answer = $prompt.select("+ ", ["Gender","Race","Tool","Potions","Exit"])
-    end
-    
-    # Gender Select
-    def select_gender
-        $gender = $prompt.select("Select your characters gender #{$gender_emoji}",$gender,["Male", "Female"])
-    end
-    
-    #Character Select
-    def select_character
-        $race = $prompt.select("Select your race #{$character_emoji}",$character,["Witcher", "Human", "Blood Elvf", "Night Crawler", "Warthog", "Soul Reaper", "Spartan", "Iron Dwarf", "Kree Warrior"])
-    end
-    
-    #Tool Select
-    def select_tool
-        $tool = $prompt.select("Select a Tool #{$sword_emoji}",$tools,["Infinity Gauntlet","Darkhold Blade", "Mjolnir", "Gold Fist", "Liquid Sword", "nothing"])
-    end
-    #Potion Select
-    def select_potion
-        $potion = $prompt.select("Select a potion #{$potion_emoji}",$potion,["Wolf Blood", "Vital Essence", "Oort Brew", "Soul Dealer", "Dragon Breath"])
-    end
-    
-    system "clear"
-    option =""
-    while option != "Exit"
-        option = start_options
-        case option
-        when "Gender"
-            gender = select_gender
-        when "Race"
-            race = select_character
-        when "Tool"
-            tool = select_tool
-        when "Potions"
-            potion = select_potion
-        else
-        puts "Exit"
-        end
-    end
+    choice = %w(Male Female)
+    $gender = $prompt.select("Select your characters gender #{$character_name}", choice)
 end
+def race_selection
+    require "tty-prompt"
+    $prompt = TTY::Prompt.new
+    choice = %w(Witcher Orc Human Blood-Elvf Night-Crawler Goblin Warthog Soul-Reaper Spartan Iron-Dwarf Kree-Warrior )
+    $race = $prompt.select("Select your characters race #{$character_name}", choice)
+end
+def tool_selection
+    require "tty-prompt"
+    $prompt = TTY::Prompt.new
+    choice = %w(Infinity-Gauntlet Darkhold-Blade Mjolnir Gold-Fist Liquid-Sword Nothing)
+    $tool = $prompt.select("Select your characters gender #{$character_name}", choice)
+end
+def potion_selection
+    require "tty-prompt"
+    $prompt = TTY::Prompt.new
+    choice = %w(Wolf-Blood Vital-Essence Oort-Brew Soul-Dealer Dragon-Breath)
+    $potion = $prompt.select("Select your characters gender #{$character_name}", choice)
+end
+#END OF CHARACTER CREATION
 
 def intro_story
     puts "#{$character_name} can you hear me....." + "wispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
@@ -105,8 +84,10 @@ def user_choice_bridge
     if $user_choice1 == "left"
         puts "You walk for 1 day until you reach a cliff #{$mountain_cliff}."  
         puts "You look over to the otherside of the canyon and notice a old bridge that leads to where you need to go, BUT the bridge looks like it might break..."
-        puts "Do you want to take the chance and cross the bridge?" + " (yes/no)".green
-        $user_choice1_left = STDIN.gets.chomp
+        require "tty-prompt"
+        $prompt = TTY::Prompt.new
+        choice = %w(yes no)
+        $user_choice1_left = $prompt.select("Do you want to take the chance and cross the bridge #{$character_name}", choice)
         system "clear"
     end
 end
@@ -137,8 +118,10 @@ end
 def river_cross
     if $user_choice1 == "right" || $user_choice1_left == "no"
         puts "You walk across the field until you reach a river"
-        puts "Do you wish to cross the river?" + " (yes/no)".green
-        $user_choice_river = STDIN.gets.chomp
+        require "tty-prompt"
+        $prompt = TTY::Prompt.new
+        choice = %w(yes no)
+        $user_choice_river = $prompt.select("Do you wish to cross the river #{$character_name}", choice)
     end
 end
 
@@ -151,8 +134,10 @@ def river_cross_answer
         puts "1. Stale murky water #{$water}"
         puts "2. Dirty glass of wine #{$wine}"
         puts "\n"
-        puts "You are thirsty, so you have to choose one..." + " type (water/wine)".green
-        $user_choice_beverage = STDIN.gets.chomp
+        require "tty-prompt"
+        $prompt = TTY::Prompt.new
+        choice = %w(water wine)
+        $user_choice_beverage = $prompt.select("You are thirsty, so you have to choose one... #{$character_name}", choice)
         system "clear"
     
     elsif $user_choice_river == "no"
@@ -183,8 +168,8 @@ def beverage_choice
         $process_id = spawn "afplay -v 0.2 item_drop.mp3" 
         puts "Moments later you die from the poison"
         sleep(4)
+        system("killall afplay")
         system "clear"
-        Process.kill("SIGKILL", $process_id)
         puts $try_again
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
         begin
@@ -268,8 +253,10 @@ end
 
 def dragon_encounter
     puts "ITS A DRAGON..."
-    puts "You have a choice... you can either run to the left or the right...(type left or right)"
-    $user_choice_dragon = STDIN.gets.chomp
+    require "tty-prompt"
+    $prompt = TTY::Prompt.new
+    choice = %w(left right)
+    $user_choice_dragon = $prompt.select("You have a choice... you can either run to the left or the right... #{$character_name}", choice)
     system "clear"
     if $user_choice_dragon == "left"
         puts "You have decided to run to the left"
@@ -294,11 +281,13 @@ def dragon_run_direction_left
         puts "You run to the left and slip on a pile of bones...."
         puts "You hear the dragons wings flap and you freeze"
         puts "Before you realise the dragon is standing in front of you"
-        puts "Do you pull use the #{$tool} and attack the dragon? yes/no"
-        $user_choice_attack = STDIN.gets.chomp
+        require "tty-prompt"
+        $prompt = TTY::Prompt.new
+        choice = %w(yes no)
+        $user_choice_attack = $prompt.select("Do you pull use the #{$tool} and attack the dragon? #{$character_name}", choice)
         
     
-        if $user_choice_attack == "yes" && $potion != "Dragon Breath"
+        if $user_choice_attack == "yes" && $potion != "Dragon-Breath"
             puts "You attempt to use the #{$tool} on the dragon but before you can do anyhting it swips you off your feet and burns you with its firey breath..... #{$death_emoji}(Restart Game)"
             # system "clear"
             Process.kill("SIGKILL", $process_id)
@@ -311,7 +300,7 @@ def dragon_run_direction_left
               end 
             return
         #Second Chance Life BASED on Potion Selection..
-        elsif $user_choice_attack == "yes" && $potion == "Dragon Breath"
+        elsif $user_choice_attack == "yes" && $potion == "Dragon-Breath"
             puts "You attempt to use the #{$tool} on the dragon but before you can do anyhting it swips you off your feet and burns you with its firey breath..... #{$death_emoji}"
             sleep(2)
             puts "But wait...."
@@ -324,8 +313,10 @@ def dragon_run_direction_left
             puts "How..... am i alive"
             puts "You relise that you have survived the first blast from the dragon due to the #{$potion} potion you selected at the beginning of your journey"
             puts "You now have to decide your fate as you realise that the potion is used its life."
-            puts "Do you wish ask for forgivness from the dragon and offer your service? yes/no" 
-            $second_chance = STDIN.gets.chomp  
+            require "tty-prompt"
+            $prompt = TTY::Prompt.new
+            choice = %w(yes no)
+            $second_chance = $prompt.select("Do you wish ask for forgivness from the dragon and offer your service #{$character_name}", choice)
         end
     end   
         
@@ -359,7 +350,7 @@ def dragon_run_direction_left
                   end 
                 return
     
-        elsif  $user_choice_attack == "no"
+        elsif  $user_choice_attack == "no" && $potion == "Dragon-Breath"
                 puts "You drop the #{$tool} on the floor and tell the dragon you are there to offer your protection"
                 puts "The dragon sits back and agrees to the offer, and allows you safe passage in and out of the lair"
                 sleep(3)
@@ -367,6 +358,21 @@ def dragon_run_direction_left
                 puts $thank_you
                 Process.kill("SIGKILL", $process_id)
                 # system("killall afplay")
+                begin
+                    exit!
+                  rescue SystemExit
+                    p 123
+                  end
+                return
+            elsif  $user_choice_attack == "no" && $potion != "Dragon-Breath"
+                puts "You drop the #{$tool} on the floor and tell the dragon you are there to offer your protection"
+                puts "You then realise that you choose the wrong potion and the dragon thinks you taste great"
+                puts "You dont want to see what happens next............"
+                sleep(3)
+                # system "clear"
+                Process.kill("SIGKILL", $process_id)
+                puts $try_again
+                $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
                 begin
                     exit!
                   rescue SystemExit
@@ -387,10 +393,12 @@ def dragon_run_direction_right
         sleep(2)
         puts "Before you realise the dragon is standing in front of you waiting for your next move"
         sleep(3)
-        puts "Do you pull use the #{$tool} and attack the dragon? yes/no"
-        $user_choice_attack = STDIN.gets.chomp
+        require "tty-prompt"
+        $prompt = TTY::Prompt.new
+        choice = %w(yes no)
+        $user_choice_attack = $prompt.select("Do you use the #{$tool} and attack the dragon #{$character_name}", choice)
     
-        if $user_choice_attack == "no" && $potion != "Dragon Breath"
+        if $user_choice_attack == "no" && $potion != "Dragon-Breath"
             puts "You decide to drink the #{$potion} and you start to feel strange..."
             sleep(2)
             puts "Something is wrong.."
@@ -411,7 +419,7 @@ def dragon_run_direction_right
               end 
             return
         
-        elsif  $user_choice_attack == "no" && $potion == "Dragon Breath"
+        elsif  $user_choice_attack == "no" && $potion == "Dragon-Breath"
                 puts "You decide to drink the #{$potion} and you start to feel strange..."
                 sleep(2)
                 puts "Something is wrong.."
@@ -439,7 +447,7 @@ def dragon_run_direction_right
                   end
                 return
         
-        elsif $user_choice_attack == "yes" && $potion == "Dragon Breath"
+        elsif $user_choice_attack == "yes" && $potion == "Dragon-Breath"
                 puts "You attempt to use the .... you died#{$death_emoji}(Restart Game)"
                 # system "clear"
                 Process.kill("SIGKILL", $process_id)
@@ -452,7 +460,7 @@ def dragon_run_direction_right
                   end 
                 return
 
-        elsif $user_choice_attack == "yes" && $potion != "Dragon Breath"
+        elsif $user_choice_attack == "yes" && $potion != "Dragon-Breath"
                 puts "You attempt to use the #{$potion} but before you can drink it the dragon eats you"
                 # system "clear"
                 Process.kill("SIGKILL", $process_id)

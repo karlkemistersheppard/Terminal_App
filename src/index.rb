@@ -52,9 +52,16 @@ end
 #INTRO MESSAGE + STRING INTERPOLATION & USE OF $GLOBAL VARIABLE
 puts "Welcome #{$character_name}, you are about to embark on a mystical journey to slay a fire breathing " + $dragon + "but before we get started, we need to build you a character"
 #END
-
+system "clear"
 #TTY PROMPT CHARACTER
-puts tty_prompt_start
+puts gender_selction
+puts race_selection
+puts tool_selection
+puts potion_selection
+
+
+
+# puts tty_prompt_start
 #END
 
 
