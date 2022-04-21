@@ -96,3 +96,12 @@ $fear = <<TEXT
 TEXT
 
 
+$echo = <<TEXT
+\u{1F50A}
+TEXT
+
+
+
+$LMAO = <<TEXT
+\u{1F923}
+TEXT
