@@ -105,23 +105,23 @@ require 'colorize'
 
 
 #REPLACING EXISTING TTY TO ENSURE THE USER COULD NOY BYPASS THE CREATION MENU- ALL PASSED
-    require "tty-prompt"
-    $prompt = TTY::Prompt.new
-    choice = %w(Male Female)
-    $gender = $prompt.select("Select your characters gender #{$character_name}", choice)
+    # require "tty-prompt"
+    # $prompt = TTY::Prompt.new
+    # choice = %w(Male Female)
+    # $gender = $prompt.select("Select your characters gender #{$character_name}", choice)
 
-    require "tty-prompt"
-    $prompt = TTY::Prompt.new
-    choice = %w(Witcher Orc Human Blood-Elvf Night-Crawler Goblin Warthog Soul-Reaper Spartan Iron-Dwarf Kree-Warrior )
-    $race = $prompt.select("Select your characters race #{$character_name}", choice)
+    # require "tty-prompt"
+    # $prompt = TTY::Prompt.new
+    # choice = %w(Witcher Orc Human Blood-Elvf Night-Crawler Goblin Warthog Soul-Reaper Spartan Iron-Dwarf Kree-Warrior )
+    # $race = $prompt.select("Select your characters race #{$character_name}", choice)
 
-    require "tty-prompt"
-    $prompt = TTY::Prompt.new
-    choice = %w(Infinity-Gauntlet Darkhold-Blade Mjolnir Gold-Fist Liquid-Sword Nothing)
-    $tool = $prompt.select("Select your characters gender #{$character_name}", choice)
+    # require "tty-prompt"
+    # $prompt = TTY::Prompt.new
+    # choice = %w(Infinity-Gauntlet Darkhold-Blade Mjolnir Gold-Fist Liquid-Sword Nothing)
+    # $tool = $prompt.select("Select your characters gender #{$character_name}", choice)
 
-    require "tty-prompt"
-    $prompt = TTY::Prompt.new
-    choice = %w(Wolf-Blood Vital-Essence Oort-Brew Soul-Dealer Dragon-Breath)
-    $potion = $prompt.select("Select your characters gender #{$character_name}", choice)
+    # require "tty-prompt"
+    # $prompt = TTY::Prompt.new
+    # choice = %w(Wolf-Blood Vital-Essence Oort-Brew Soul-Dealer Dragon-Breath)
+    # $potion = $prompt.select("Select your characters gender #{$character_name}", choice)
 
