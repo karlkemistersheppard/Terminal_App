@@ -8,12 +8,23 @@ def tty_prompt_instructions
     
     # Gender Select
     def select_gender
-        $about = $prompt.select("How to play:
-        1. Step one create your own character name
-        2. Step two create your own character from the options provided Gender, Race, Tool & Potion
-        3. Step three read the story and try to navigate your way to the exit
-        4. 
-        5.
+        $about = $prompt.select("\n""How to play:
+
+        1. Step one you already made it here
+
+        2. Set two create your own custom name you would like to use for your character " + "BE CREATIVE".green + "
+        
+        3. Step three create your own character from the options provided
+        
+        4. Step four adjust your sound
+        
+        5. Step five read the story and try to navigate your way to the exit without dying
+        
+        6. Step six if you fail, try again until you reach the end game 
+        
+        7. Have fun along the way... I hope you enjoy the adventure as much as i did creating it
+        
+        8. Now go find that
         ",$about,["Exit",])
     end
     
@@ -28,6 +39,16 @@ def tty_prompt_instructions
         end
     end
     system "clear"
+end
+
+def create_character_name
+    puts "So I can tell your fellow citizens about your adventure, please enter a unique character name." + " Be Creative".green
+    $character_name = ""
+    while true
+        puts "Please enter your characters name?"
+        $character_name = STDIN.gets.chomp.magenta
+        $character_name.empty? ? (puts "Character name required") : break
+    end
 end
 
 #CHARACTER CREATION MENUS
@@ -47,28 +68,31 @@ def tool_selection
     require "tty-prompt"
     $prompt = TTY::Prompt.new
     choice = %w(Infinity-Gauntlet Darkhold-Blade Mjolnir Gold-Fist Liquid-Sword Nothing)
-    $tool = $prompt.select("Select your characters gender #{$character_name}", choice)
+    $tool = $prompt.select("Select your characters weapon #{$character_name}", choice)
 end
 def potion_selection
     require "tty-prompt"
     $prompt = TTY::Prompt.new
     choice = %w(Wolf-Blood Vital-Essence Oort-Brew Soul-Dealer Dragon-Breath)
-    $potion = $prompt.select("Select your characters gender #{$character_name}", choice)
+    $potion = $prompt.select("Select your characters potion #{$character_name}", choice)
 end
 #END OF CHARACTER CREATION
 
+
 def intro_story
-    puts "#{$character_name} can you hear me....." + "wispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
+    puts "#{$character_name} can you hear me....." + "whispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
     sleep(4)
     puts "Fearless #{$race} you have arrived at your first destination, you are standing In front of Blood Moons Forest and tonight the moon is alive #{$moon}" 
-    puts "The trees are talking, and you try to forget about the myths you have heared......" 
-    puts "#{$book_reader.yellow}" + " wispers anyone that has entered the forest has never been seen again".italic
+    sleep(3)
+    puts "The trees are talking, and you try to forget about the myths you have heard......"
+    sleep(2)
+    puts "\n"
+    puts "#{$book_reader.yellow}" + " whispers anyone that has entered the forest has never been seen again".italic
+    puts "\n"
     puts "\n"
     sleep(3)
-    puts "Your now have to decide which direction you want to take? "
+    puts "You now have to decide which direction you want to take? "
 end
-
-
 
 
 def user_choice1
@@ -82,8 +106,8 @@ end
 #BRIDGE CROSSING- not working
 def user_choice_bridge
     if $user_choice1 == "left"
-        puts "You walk for 1 day until you reach a cliff #{$mountain_cliff}."  
-        puts "You look over to the otherside of the canyon and notice a old bridge that leads to where you need to go, BUT the bridge looks like it might break..."
+        puts "You walk for 1 day until you reach a cliff #{$mountain_cliff}"  
+        puts "You look over to the other side of the canyon and notice a old bridge that leads to where you need to go, BUT the bridge looks like it might break..."
         require "tty-prompt"
         $prompt = TTY::Prompt.new
         choice = %w(yes no)
@@ -128,8 +152,8 @@ end
 def river_cross_answer
     if $user_choice_river == "yes"
         puts "You cross the river and find a tavern on the otherside offering free beverages #{$beverage}"
-        puts "You take the offer and head inside"
-        puts "You are greated by a old lady that looks like a Witch but she offers you a glass of" 
+        puts "The sun is vanishing over the mountains so you take up the offer and head inside"
+        puts "You are greeted by an old lady that looks like a Witch but she offers you a glass of" 
         puts "\n"
         puts "1. Stale murky water #{$water}"
         puts "2. Dirty glass of wine #{$wine}"
@@ -188,81 +212,217 @@ end
 
 #ENTERING CAVE WITH AUDIO STREAM
 def cave_enter
-    puts "After half a days walk you finally across slinters ridge and take the long walk up to scarecrow's mountain #{$mountain_cliff}"
+    puts "After half a days walk you finally across splinters ridge and take the long walk up to scarecrow's mountain #{$mountain_cliff}"
     sleep(1)
-    puts "Finally you arrive at the enterance to the Dragons Lair and begin to walk in"
+    puts "Finally you arrive at the entrance to the Dragons Lair and begin to walk in"
     process_id = spawn "afplay -v 1 Walking_into_Dungeon.mp3"
     sleep(1)
     puts "As you start walking up to the cave you start to notice..."
     sleep(2)
-    puts "The sound of the water droplets hitting the rockbed is echoing off the walls."
+    puts "The sound of the water droplets hitting the rock bed is echoing off the walls."
     sleep(1)
     puts "Its dark, its cold and the light is quickly becoming dark again"
     sleep(2)
-    puts "As you step further into the cave you notice a large door with small key shaped carvings....."
+    puts "As you step further into the cave you notice a large door with small key-shaped carvings....."
     sleep(2)
     puts "As you step closer, you notice the floor is damp and has a strange smell"
     sleep(2)
-    puts "The door is beginging to open, you walk inside a and find yourself in a large room"
+    puts "The door is beginning to open, you walk inside a and find yourself in a large room"
     sleep(3)
     puts "You chest is pumping with fear #{$fear}"
     sleep(4)
-    puts "You walk though and the door closes behind you and locks."
+    puts "You walk through and the door closes behind you and locks."
 end
 #ENTERING CAVE WITH AUDIO STREAM END
 
 
-#TTY-PROMPT UNLOCKING KEYS + AUDIO FILES
+def riddles
+    #RIDDLE ONE
+    correct_answer = "dragon"
+    user_guess = ""
+    current_count = 0
+    count_limit = 3
+    out_of_guesses = false
 
-def tty_progress_key_audio
+    puts "You wish to enter my Lair......."
+    sleep(2)
+    puts "\n"
+    puts "Well then" + " #{$character_name}" + " lets play a game if you dare!!!"
+    puts "\n"
+    puts "To enter you need to guess three secret words, I will give you three chances for each riddle."
+    puts "\n"
+    puts "Riddle 1".yellow
+    puts "\n"
+    puts "- If you fail, your fate is sealed"
+    puts "- I have a tail, but im not a dog"
+    puts "- I have scales, but im not a snake"
+    puts "- I have wings, but im not a eagle"
+    puts "- Im a myth, but im real"
+    puts "- I love gold, but cant spend it"
+    puts "- What am I?"
 
-    bar = TTY::ProgressBar.new("Insert your first key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
-        1.times do
-        sleep(0.5)
-        bar.advance  # by default increases by 1
+    while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
+        if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
+        puts "Guess: "
+        user_guess = STDIN.gets.chomp()
+        current_count += 1 #increments their guess count by one
+
+        else
+        out_of_guesses = true #this means the user has no more guesses left which changes the condition to true from false ending the program
+        end
     end
-    process_id = spawn "afplay unlock.mp3"
 
-    sleep(1)
-
-    bar = TTY::ProgressBar.new("Insert your second key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
-        1.times do
-        sleep(0.5)
-        bar.advance  # by default increases by 1
+    if out_of_guesses #calls in the out ofguesses variable
+        puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
+        sleep(4)
+        system "clear"
+        Process.kill("SIGKILL", $process_id)
+        puts $try_again
+        $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
+        # system("killall afplay")
+        begin
+            exit!
+        rescue SystemExit
+            p 123
+        end 
+        return
+    elsif
+        puts "Well done" + " #{$character_name}" + " you have passed the first Riddle by guessing the correct answer".green + " #{user_guess} #{$dragon}".yellow
+        puts "Please take your #{$key_emoji}"
+        sleep(3)
     end
-    process_id = spawn "afplay unlock.mp3"
 
-    sleep(1)
 
-    bar = TTY::ProgressBar.new("Insert your third key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
-        1.times do
-        sleep(0.5)
-        bar.advance  # by default increases by 1
+    #RIDDLE TWO
+    correct_answer = "echo"
+    user_guess = ""
+    current_count = 0
+    count_limit = 3
+    out_of_guesses = false
+
+    puts "So you passed my first test, it won't happen again..."
+    puts "\n"
+    sleep(3)
+    puts "Riddle 2".yellow
+    puts "\n"
+    puts "I repeat every word you say, but I don't have a mouth"
+    puts "You can hear me speak, but I cannot hear myself"
+    puts "I exist, but you can't see me"
+    puts "What am I?"
+    while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
+        if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
+        puts "Guess: "
+        user_guess = STDIN.gets.chomp()
+        current_count += 1 #increments their guess count by one
+
+        else
+        out_of_guesses = true #this means the user has no more guesses left which changes the condition to true from false ending the program
+        end
     end
-    process_id = spawn "afplay unlock.mp3"
-end
 
-#UNLOCKING SECRET DOOR
-def unlock_secret_door
-    bar = TTY::ProgressBar.new("Unlocking Secret Door [:bar]".colorize(:blue), total: 35) # Added TTY Progress bar showing quiz is downloading for UX
-        45.times do
-        sleep(0.1)
-        bar.advance  # by default increases by 1
+    if out_of_guesses #calls in the out ofguesses variable
+        puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
+        sleep(4)
+        system "clear"
+        Process.kill("SIGKILL", $process_id)
+        puts $try_again
+        $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
+        # system("killall afplay")
+        begin
+            exit!
+        rescue SystemExit
+            p 123
+        end
+        return
+    else 
+        puts "Well done" + " #{$character_name}" + " you have passed the second Riddle by guessing the correct answer ".green + " #{user_guess} #{$echo}".yellow
+        puts "Please take your #{$key_emoji}"
+        sleep(3)
     end
-end
 
-def dragon_encounter
-    puts "ITS A DRAGON..."
-    require "tty-prompt"
-    $prompt = TTY::Prompt.new
-    choice = %w(left right)
-    $user_choice_dragon = $prompt.select("You have a choice... you can either run to the left or the right... #{$character_name}", choice)
+
+
+    #RIDDLE THREE
+    correct_answer = "fire"
+    user_guess = ""
+    current_count = 0
+    count_limit = 3
+    out_of_guesses = false
+
+    puts "You got lucky that time, you will never guess the last question as soo many have tried and failed...".green
+    puts "\n"
+    sleep(3)
     system "clear"
-    if $user_choice_dragon == "left"
-        puts "You have decided to run to the left"
-    elsif $user_choice_dragon == "right"
-        puts "You have decided to run to the right"
+    puts "Final Riddle".yellow
+    puts "\n"
+    puts "Let's play a game...."
+    puts "If I eat I Live"
+    puts "If I breathe I Live"
+    puts "If I drink I Die"
+    puts "What am I?"
+    while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
+        if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
+        puts "Guess: "
+        user_guess = STDIN.gets.chomp()
+        current_count += 1 #increments their guess count by one
+
+        else
+            out_of_guesses = true #this means the user has no more guesses left which changes the condition to true from false ending the program
+        end
+
     end
+
+    if out_of_guesses #calls in the out ofguesses variable
+        puts "You are out of guesses, the floor just opened up and you fell to your death #{$death_emoji}"
+        sleep(4)
+        system "clear"
+        Process.kill("SIGKILL", $process_id)
+        puts $try_again
+        $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
+        # system("killall afplay")
+        begin
+            exit!
+        rescue SystemExit
+            p 123
+        end
+        return
+    else
+        #Adding keys to the locks with time delay sleep() function=========================================================
+        puts "Well done #{$character_name} you have unlocked the secret passage to the Dragons Lair by guessing".green + " #{user_guess} #{$fire_emoji}".yellow
+        puts "\n"
+        puts "Please take your keys and insert them into the key holes on the wall"
+    end
+    end
+
+
+    #TTY-PROMPT UNLOCKING KEYS + AUDIO FILES- reference index.rb
+
+    # #UNLOCKING SECRET DOOR- reference index.rb
+
+    def door_opening
+        puts "\n"
+        sleep(1)
+        puts "The door is open says #{$book_reader.yellow}"
+        sleep(1)
+        puts "No one has ever got this far and survived......"
+        puts "You walk in, and are dazzled by the mountain of treasure and notice something moving in the shadows....." 
+        sleep(3)
+        puts "\n"
+    end
+
+
+    def dragon_encounter
+        puts "ITS A DRAGON..."
+        require "tty-prompt"
+        $prompt = TTY::Prompt.new
+        choice = %w(left right)
+        $user_choice_dragon = $prompt.select("You have a choice... you can either run to the left or the right... #{$character_name}", choice)
+        system "clear"
+        if $user_choice_dragon == "left"
+            puts "You have decided to run to the left"
+        elsif $user_choice_dragon == "right"
+            puts "You have decided to run to the right"
+        end
 end
 
 #TTY-PROMPT UNLOCKING KEYS + AUDIO FILES END
@@ -288,7 +448,7 @@ def dragon_run_direction_left
         
     
         if $user_choice_attack == "yes" && $potion != "Dragon-Breath"
-            puts "You attempt to use the #{$tool} on the dragon but before you can do anyhting it swips you off your feet and burns you with its firey breath..... #{$death_emoji}(Restart Game)"
+            puts "You attempt to use the #{$tool} on the dragon but before you can do anything it swipes you off your feet and burns you with its firey breath..... #{$death_emoji}(Restart Game)"
             # system "clear"
             Process.kill("SIGKILL", $process_id)
             puts $try_again
@@ -301,22 +461,22 @@ def dragon_run_direction_left
             return
         #Second Chance Life BASED on Potion Selection..
         elsif $user_choice_attack == "yes" && $potion == "Dragon-Breath"
-            puts "You attempt to use the #{$tool} on the dragon but before you can do anyhting it swips you off your feet and burns you with its firey breath..... #{$death_emoji}"
+            puts "You attempt to use the #{$tool} on the dragon but before you can do anything it blasts you with a fire ball..... #{$death_emoji}"
             sleep(2)
             puts "But wait...."
             sleep(1)
             puts "You have survived the first blast"
             puts "The dragon steps back and is confused ........"
             sleep(3)
-            puts "You cant believe your luck.... your are still alive"
+            puts "You can't believe your luck.... you are still alive"
             sleep(1)
             puts "How..... am i alive"
-            puts "You relise that you have survived the first blast from the dragon due to the #{$potion} potion you selected at the beginning of your journey"
+            puts "You realise that you have survived the first blast from the dragon due to the #{$potion} potion you selected at the beginning of your journey"
             puts "You now have to decide your fate as you realise that the potion is used its life."
             require "tty-prompt"
             $prompt = TTY::Prompt.new
             choice = %w(yes no)
-            $second_chance = $prompt.select("Do you wish ask for forgivness from the dragon and offer your service #{$character_name}", choice)
+            $second_chance = $prompt.select("Do you wish ask for forgiveness from the dragon and offer your service #{$character_name}", choice)
         end
     end   
         
@@ -404,7 +564,7 @@ def dragon_run_direction_right
             puts "Something is wrong.."
             puts "The dragon begins to circle you"
             puts "Before you can decide on your next move, the dragon swings its large tail and knocks you across the room"
-            puts "You have it the wall, and cant move....."
+            puts "You have hit the wall, and cant move your legs....."
             puts "Wish your last breath you...."
             sleep(3)
             puts "The dragon ate you"
