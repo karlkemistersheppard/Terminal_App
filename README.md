@@ -1,7 +1,5 @@
 # T1A3_Terminal_App
 
-
-
 ### Source Control Repository
 Below is a link to the first source control repository that was created prior to Slide Deck presentation.
 From there, i created a second branch called modulairze and pushed all further updates to ensure that i had a backup copy of the working application prior to modulairzing the index.rb by transfering majority of the index code to defined methods.
@@ -130,12 +128,6 @@ end
 
 ### Features
 R6	Develop a list of features that will be included in the application. It must include:
-- at least THREE features
-- describe each feature
-- Note: Ensure that your features above allow you to demonstrate your understanding of the following language elements and concepts:
-- use of variables and the concept of variable scope
-- loops and conditional control structures
-- error handling
   
 ### Feature 1 (Control Structures)
 ####Feature 1: 
@@ -412,7 +404,57 @@ Develop an implementation plan which:
 - prioritise the implementation of different features, or checklist items within a feature
 - provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
 
+#### Feature 1 (Estimated Time Allocation ? hrs)
+
+##### Checklist
+
+1. /
+2. /
+3. /
+4. /
+5. /
+6. /
+7. /
+8. /
+9. /
+10. 
+
+#### Feature 2 (Estimated Time Allocation ? hrs)
+
+##### Checklist
+
+1. /
+2. /
+3. /
+4. /
+5. /
+6. /
+7. /
+8. /
+9. /
+10. 
+
+
+#### Feature 3 (Estimated Time Allocation ? hrs)
+
+##### Checklist
+
+1. /
+2. /
+3. /
+4. /
+5. /
+6. /
+7. /
+8. /
+9. /
+10. 
+
+
+
+
 Provide screenshots/images and/or a reference to an accessible project management platform used to track this implementation plan. 
+
 ![alt text](./docs/Development%20Process%20Plan.png)
 ![alt text](./docs/Flow_Chart_Control.drawio.png)
 ![alt text](./docs/Screen%20Shot%202022-04-14%20at%207.20.27%20pm.png)
@@ -420,11 +462,58 @@ Provide screenshots/images and/or a reference to an accessible project managemen
 ![alt text](./docs/Screen%20Shot%202022-04-21%20at%204.03.27%20pm.png)
 ![alt text](./docs/Screen%20Shot%202022-04-21%20at%209.30.14%20am.png)
 ![alt text](./docs/Screen%20Shot%202022-04-22%20at%2010.05.44%20pm.png)
-
-
-> Your checklists for each feature should have at least 5 items.
+![alt text](./docs/Screen%20Shot%202022-04-23%20at%2012.09.48%20am.png)
 
 ### Help Documentation
+
+
+
+
+
+
+
+
+
+#### How to play
+
+To initiate the game from the Termainal once you have followed the install process.
+Navigate inside the src directory via the command line/ terminal and enter the below to run the game.
+```code
+./run_index.rb
+```
+You will be greated with the below option 
+```code
+1. Step one you already made it here
+2. Set two create your own custom name you would like to use for your character " + "BE CREATIVE".green + "
+3. Step three create your own character from the options provided
+4. Step four adjust your sound
+5. Step five read the story and try to navigate your way to the exit without dying
+6. Step six if you fail, try again until you reach the end game         
+7. Have fun along the way... I hope you enjoy the adventure as much as i did creating it
+8. Now go find that
+```
+![alt text](./docs/1.%20start_screen.png)
+![alt text](./docs/2.%20How_to_play.png)
+![alt text](./docs/3.%20Landing_Logo.png)
+![alt text](./docs/4.%20Gender_TTY.png)
+![alt text](./docs/5.%20Race_TTY.png)
+![alt text](./docs/6.%20Tool_TTY.png)
+![alt text](./docs/7.%20Potion_TTY.png)
+![alt text](./docs/8.%20Progress_Bar_Loading.png)
+![alt text](./docs/9.%20Story_intro.png)
+![alt text](./docs/10.%20TRY_AGAIN.png)
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Instalation Instructions
 
