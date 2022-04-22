@@ -7,7 +7,7 @@ def tty_prompt_instructions
     end
     
     # Gender Select
-    def select_gender
+    def how_to_play
         $about = $prompt.select("\n""How to play:
 
         1. Step one you already made it here
@@ -33,7 +33,7 @@ def tty_prompt_instructions
         option = start_options
         case option
         when "HOW TO PLAY"
-            about = select_gender
+            about = how_to_play
         else
         puts "Exit"
         end
@@ -41,6 +41,7 @@ def tty_prompt_instructions
     system "clear"
 end
 
+#CREATE CHARACTER NAME
 def create_character_name
     puts "So I can tell your fellow citizens about your adventure, please enter a unique character name." + " Be Creative".green
     $character_name = ""
@@ -50,6 +51,7 @@ def create_character_name
         $character_name.empty? ? (puts "Character name required") : break
     end
 end
+#END
 
 #CHARACTER CREATION MENUS
 def gender_selction
@@ -76,9 +78,9 @@ def potion_selection
     choice = %w(Wolf-Blood Vital-Essence Oort-Brew Soul-Dealer Dragon-Breath)
     $potion = $prompt.select("Select your characters potion #{$character_name}", choice)
 end
-#END OF CHARACTER CREATION
+#END
 
-
+#INTRO TO STORY
 def intro_story
     puts "#{$character_name} can you hear me....." + "whispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
     sleep(4)
@@ -93,6 +95,7 @@ def intro_story
     sleep(3)
     puts "You now have to decide which direction you want to take? "
 end
+#END
 
 
 def user_choice1
@@ -635,3 +638,4 @@ def dragon_run_direction_right
         end
     end
 end
+

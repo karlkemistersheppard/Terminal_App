@@ -124,4 +124,3 @@ require 'colorize'
     # $prompt = TTY::Prompt.new
     # choice = %w(Wolf-Blood Vital-Essence Oort-Brew Soul-Dealer Dragon-Breath)
     # $potion = $prompt.select("Select your characters gender #{$character_name}", choice)
-
