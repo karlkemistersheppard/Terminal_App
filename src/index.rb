@@ -66,11 +66,9 @@ sleep(3)
 system "clear"
 #END
 
-
 #START OF THE ADVENTURE
 puts intro_story
 #END
-
 
 #FIRST PATH CHOICE
 #Updated from std user input to control the flow and the user by entering in a non valid input or hitting enter without selecting a true path.
@@ -79,46 +77,53 @@ $prompt = TTY::Prompt.new
 choice = %w(left right)
 $user_choice1 = $prompt.select("Choose your path #{$character_name}", choice)
 #END
+
 puts "\n""\n""\n"
-#FIRST CHOICE IN DIRECITONAL PATH=======================================================================================================================================
+
+#FIRST CHOICE IN DIRECITONAL PATH
 puts user_choice1
 #END
 
 system "clear"
 
-#LEFT PATH MAIN=======================================================================================================================================
+#LEFT PATH BRIDGE
 puts user_choice_bridge
+#END
 
 system "clear"
 
+#BEVERAGE ANSWER
 puts user_choice_bridge_answer
+#END
 
-#DO YOU WISH TO CROSS THE RIVER=======================================================================================================================================
+#DO YOU WISH TO CROSS THE RIVER
 puts river_cross
 #END
 
 system "clear"
 
-#CROSS RIVER YES/NO=======================================================================================================================================
+#CROSS RIVER YES/NO
 puts river_cross_answer
+#END
 
 system "clear"
 
-#BEVERAGE CHOICE=======================================================================================================================================
+#BEVERAGE CHOICE
 puts beverage_choice
+#END
 
 system "clear"
 
 #ENTER CAVE
 puts cave_enter
+#END
 
-#====================RIDDLES START=====================================
-#Note: Tried to Modularize the below riddles into their worn seperate modules so i could call them into index.rb and it cause the riddle structure to break, tired to error handle- education support advised to move it back to index.rb.
+#RIDDLES START
 puts riddles
-#====================RIDDLES END====================================
+#END
 
 
-#====================INSERTING KEYS START=====================================
+#INSERTING KEYS START
 
 #TTY-PROMPT UNLOCKING KEYS + AUDIO FILES
 bar = TTY::ProgressBar.new("Insert your first key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
