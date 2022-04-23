@@ -1,11 +1,18 @@
 # T1A3_Terminal_App
 
+### About
+
+Welcome to Dragons Lair, an interactive text-based adventure game created with ruby and designed to be run via the command line/ terminal.
+The game starts off by allowing the user to read through the how-to-play instructions, then requires the user to input a creative character name that will be referenced throughout the game.  
+
+After the character name is created you will be able to create a character from four prompt select options gender, race, tool and potion.  Think carefully about what you choose here, as you may not be able to find the end game if you don’t choose wisely.  The user will face many forks in the road along the way that will lead to either the end/exit or their death which you will then be prompted with an option to try again or terminate the game.
+
 ### Source Control Repository
 Below is a link to the first source control repository that was created before the Slide Deck presentation.
 From there, I created a second branch called modularize and pushed all further updates to ensure that I had a backup copy of the working application before modularizing the index.rb by transferring the majority of the index code to defined methods.
 ### First Repo- prior to presentations (24 commits)
 https://github.com/karlkemistersheppard/Terminal_App/tree/main
-### Final Destination (42 commits +) 
+### Final Destination (50 commits +) 
 Marking for the assessment to be done on this file. (Once marking is completed I will merge the branch into the main)
 https://github.com/karlkemistersheppard/Terminal_App/tree/modulairze
 
@@ -129,7 +136,7 @@ end
 ### Features
 R6	Develop a list of features that will be included in the application. It must include:
   
-### Feature 1 (Control Structures) 
+#### Feature 1 (Control Structures) 
 
 The below code block is taken from one of the riddles that were implemented into the adventure game to test the users.
 The control structure for this particular block consists of a large variety of:
@@ -399,7 +406,7 @@ https://trello.com/b/oZLNoiP9/t1a3-terminal-app-kks
 
 R7	Develop an implementation plan which:
 
-#### Feature 1 (Estimated Time Allocation 6-7h hrs)
+#### Feature 1 (Estimated Time Allocation 6-7 hrs)
 
 ##### Checklist
 
@@ -414,7 +421,7 @@ R7	Develop an implementation plan which:
 9. Added begin/rescue to run SystemExit. **DONE**
 10. Add elsif if the new condition is not true- then puts message to the screen "Well Done" if the user guesses correct_answer. **DONE**
 
-#### Feature 2 (Estimated Time Allocation ? hrs)
+#### Feature 2 (Estimated Time Allocation 7 hrs)
 
 ##### Checklist
 
@@ -439,20 +446,42 @@ R7	Develop an implementation plan which:
 7. Update bar print advance to 45 so it prints ========= to the screen. **DONE**
 8. Add system "clear". **DONE**
 
-##### Development Process
+## Development Process
 
-![alt text](./docs/Development%20Process%20Plan.png)
-![alt text](./docs/Flow_Chart_Control.drawio.png)
+#### Error Handing Design
+
+The most important process that I tried to focus on when creating this text-based game was to reduce the possible risk of the user inputting incorrect information, this is why tty-prompt was mainly used to handle the majority of the selectors in order to avoid invalid input possibilities which it did gracefully.
+
+##### Development Error Run Testing
+
+The applicaiton has **PASSED** every route path with ZERO error returns.
+
+- start tty-prompt-right-no-death **PASSED**
+- start tty-prompt-right-yes-water-death **PASSED**
+- start tty-prompt-right-yes-wine-guess_game1-guess_game2-guess_game3-fail **PASSED**
+- start tty-prompt-right-yes-wine-guess_game1-guess_game2-guess_game3-fail **PASSED**
+- start tty-prompt-right-yes-wine-guess_game1-guess_game2-guess_game3-fail **PASSED**
+- start tty-prompt-right-yes-wine-guess_game1-guess_game2-guess_game3-right-yes-!=-death **PASSED**
+- start tty-prompt-right-yes-wine-guess_game1-guess_game2-guess_game3-right-yes-==- no-death **PASSED**
+- start tty-prompt-right-yes-wine-guess_game1-guess_game2-guess_game3-right-yes-==- yes-end **PASSED**
+- start tty-prompt-right-yes-wine-guess_game1-guess_game2-guess_game3-right-no-!=-death **PASSED**
+- start tty-prompt-right-yes-wine-guess_game1-guess_game2-guess_game3-right-no-==-to-be-continued **PASSED**
+- start tty-prompt-left-yes-death **PASSED**
+- start tty-prompt-left-no-(loops back into the right directions) **PASSED**
+
+
+![Development Process Planning](./docs/Development%20Process%20Plan.png)
+![Game Flow-chart](./docs/T1A3_Terminal_App_FINAL24_04_2022.drawio-1.png)
 
 ##### Development Process Trello
-![alt text](./docs/Screen%20Shot%202022-04-14%20at%207.20.27%20pm.png)
-![alt text](./docs/Screen%20Shot%202022-04-16%20at%201.42.05%20am.png)
-![alt text](./docs/Screen%20Shot%202022-04-21%20at%204.03.27%20pm.png)
-![alt text](./docs/Screen%20Shot%202022-04-21%20at%209.30.14%20am.png)
-![alt text](./docs/Screen%20Shot%202022-04-22%20at%2010.05.44%20pm.png)
-![alt text](./docs/Screen%20Shot%202022-04-23%20at%2012.09.48%20am.png)
-![alt text](./docs/Screen%20Shot%202022-04-23%20at%2012.57.20%20pm.png)
-![alt text](./docs/)
+![Trello Board Screen Shot 1](./docs/Screen%20Shot%202022-04-14%20at%207.20.27%20pm.png)
+![Trello Board Screen Shot 2](./docs/Screen%20Shot%202022-04-16%20at%201.42.05%20am.png)
+![Trello Board Screen Shot 3](./docs/Screen%20Shot%202022-04-21%20at%204.03.27%20pm.png)
+![Trello Board Screen Shot 4](./docs/Screen%20Shot%202022-04-21%20at%209.30.14%20am.png)
+![Trello Board Screen Shot 5](./docs/Screen%20Shot%202022-04-22%20at%2010.05.44%20pm.png)
+![Trello Board Screen Shot 6](./docs/Screen%20Shot%202022-04-23%20at%2012.09.48%20am.png)
+![Trello Board Screen Shot 7](./docs/Screen%20Shot%202022-04-23%20at%2012.57.20%20pm.png)
+![Trello Board Screen Shot FINAL](./docs/Screen%20Shot%202022-04-24%20at%209.42.01%20am.png)
 
 ### Help Documentation
 
@@ -521,12 +550,12 @@ I hope you enjoy it as much as I did making it.
 
 7. Bundler will **install** the following Ruby Gems and their dependencies. 
 
-##### frozen_string_literal: true
+###### frozen_string_literal: true
 
 ```ruby
    source "https://rubygems.org"
 ```
-##### gem "rails"
+###### gem "rails"
    
 ```ruby
    gem "colorize", "~> 0.8.1"
@@ -539,11 +568,12 @@ I hope you enjoy it as much as I did making it.
    ruby index.rb "ADD YOUR GAME TITLE" "ADD YOUR NAME HERE"
     ``` 
 ![ARGV PUTS](./docs/ARGV.png)
+There is one additional **ARGV** set, that was created to inside the end message when the user fails the attempt.
 
 9. HAVE FUN PLAYING :)
 
 
-## Reference list
+## Reference List
 
 262588213843476 (n.d.). Ruby CLI Audio Player example using afplay. [online] Gist. Available at: https://gist.github.com/ihollander/61b194622b7a5389a581ed2a270d0641 [Accessed 23 Apr. 2022].
 
