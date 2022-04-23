@@ -1,24 +1,26 @@
 
-#RUBY GEMS IMPORT FUNCTIONS FROM GEMFILE
+#RUBY GEMS IMPORT FUNCTIONS FROM GEMFILE - File/Method Location * Gemfile
 require 'emoji_regex'
 require 'colorize'
 require 'tty-prompt'
 require 'tty-progressbar'
 #END
 
-#IMPORT DATA.RB FILE THAT CONTAINS LINKS TO .RB FILES FOR THE PROGRAM
+#IMPORT DATA.RB FILE THAT CONTAINS LINKS TO .RB FILES FOR THE PROGRAM - File/Method Location *data.rb
 require_relative "./data.rb"
 #END
 
 #ARGV COMMAND LINE ARGUMENT
-game_title = "Dragons Lair"
-user_name = "Name"
+game_title = "Dragons Lair" #prints to the start of the program as a message
+user_name = "Name" #prints to the start with the game_title as below puts message.
+$fail_message = "YOU FAILED" #prints after user fails game via $glabal var => string interpolation.
 game_title = ARGV[0] if ARGV[0]
 user_name = ARGV[1] if ARGV[1]
+fail_message = ARGV[2] if ARGV[2] #This was created to add additional feature when the user fails their run.
 puts "Welcome to #{game_title}, fellow warrior #{user_name}!"
 #END
 
-#HOW TO PLAY TTY-PROMPT
+#HOW TO PLAY TTY-PROMPT - File/Method Location *methods.rb 2-46
 puts tty_prompt_instructions
 #END
 
@@ -27,12 +29,12 @@ system "clear"
 #LOGO AND INTRO MUSIC
 $process_id = spawn "afplay -v 0.2 It_Is_Coming_-_David_Fesliyan.mp3" 
 puts "\n""\n""\n"                                         
-puts $dragon_lair_logo
+puts $dragon_lair_logo # - File/Method Location * $global_var 28
 #END
 
-# CREATE CUSTOM CHARACTER NAME
+# CREATE CUSTOM CHARACTER NAME  - File/Method Location *methods.rb 49-59
 puts create_character_name
-$character_name = $character_name.magenta
+$character_name = $character_name.magenta #adding colorize gem to set the color as a #global color so it always prints to the color set.
 #END
 
 #INTRO MESSAGE + STRING INTERPOLATION & USE OF $GLOBAL VARIABLE
@@ -42,7 +44,7 @@ puts "\n"
 puts "\n"
 #END
 
-#TTY PROMPT CHARACTER
+#TTY PROMPT CHARACTER - File/Method Location *methods.rb 62-87
 puts gender_selction
 system "clear"
 puts race_selection
@@ -55,6 +57,7 @@ puts potion_selection
 system "clear"
 
 #INCLUDES CALLING $GLOBAL VARIABLES AND GEM UNICODE + TTY-PROMPT PROGRESS BAR GEM
+#Could not run the Progress Bar in its own method as its was causing strange print values to screen without error codes/prompts.
 puts "Congratulations #{$character_name}, you are the first #{$gender} #{$race} to embank on such a dangerous journey, you have decided to grab #{$tool} as your weapon to protect youself and have a vial of #{$potion} #{$potion_emoji}"
 puts "\n"
 bar = TTY::ProgressBar.new("Preparing your Adventure #{$character_name} [:bar]".colorize(:blue), total: 45) # Added TTY Progress bar showing quiz is downloading for UX
@@ -66,7 +69,7 @@ sleep(3)
 system "clear"
 #END
 
-#START OF THE ADVENTURE
+#START OF THE ADVENTURE - File/Method Location *methods.rb 90-105
 puts intro_story
 #END
 
@@ -80,45 +83,45 @@ $user_choice1 = $prompt.select("Choose your path #{$character_name}", choice)
 
 puts "\n""\n""\n"
 
-#FIRST CHOICE IN DIRECITONAL PATH
+#FIRST CHOICE IN DIRECITONAL PATH - File/Method Location *methods.rb 107-115
 puts user_choice1
 #END
 
 system "clear"
 
-#LEFT PATH BRIDGE
+#LEFT PATH BRIDGE - File/Method Location *methods.rb 118-130
 puts user_choice_bridge
 #END
 
 system "clear"
 
-#BEVERAGE ANSWER
+#BEVERAGE ANSWER - File/Method Location *methods.rb 133-154
 puts user_choice_bridge_answer
 #END
 
-#DO YOU WISH TO CROSS THE RIVER
+#DO YOU WISH TO CROSS THE RIVER - File/Method Location *methods.rb 157-167
 puts river_cross
 #END
 
 system "clear"
 
-#CROSS RIVER YES/NO
+#CROSS RIVER YES/NO - File/Method Location *methods.rb 170-201
 puts river_cross_answer
 #END
 
 system "clear"
 
-#BEVERAGE CHOICE
+#BEVERAGE CHOICE - File/Method Location *methods.rb 204-232
 puts beverage_choice
 #END
 
 system "clear"
 
-#ENTER CAVE
+#ENTER CAVE - File/Method Location *methods.rb 235-258
 puts cave_enter
 #END
 
-#RIDDLES START
+#RIDDLES START - File/Method Location *methods.rb 260-447
 puts riddles
 #END
 
@@ -158,21 +161,21 @@ bar = TTY::ProgressBar.new("Unlocking Secret Door [:bar]".colorize(:blue), total
 end
 sleep(4)
 system "clear"
-puts door_opening
+puts door_opening # - File/Method Location *methods.rb 421-431
 
 process_id = spawn "afplay Dragon.mp3"
 sleep(12)
 #END
 
-#DRAGON ENCOUNTER
+#DRAGON ENCOUNTER - File/Method Location *methods.rb 434-447
 puts dragon_encounter
-#DRAGON ENCOUNTER END
+#END
 
-#USER CHOICE DRAGON LEFT
+#USER CHOICE DRAGON LEFT - File/Method Location *methods.rb 450-554
 puts dragon_run_direction_left
 #END
 
-#USER CHOICE DRAGON RIGHT
+#USER CHOICE DRAGON RIGHT - File/Method Location *methods.rb 557-646
 puts dragon_run_direction_right
 #END
 
