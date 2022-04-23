@@ -6,6 +6,6 @@ gem install bundler
 bundle install
 clear
 #runs the applicaiton
-ruby index.rb "Dragons Lair" "KARL"
+ruby index.rb "Dragons Lair" "ADD YOUR NAME HERE" #Mod this if you wish to overide the ARGV set values.
 
 
