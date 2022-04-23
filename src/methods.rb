@@ -137,6 +137,7 @@ def user_choice_bridge_answer
         system "clear"
         Process.kill("SIGKILL", $process_id)
         puts $try_again
+        puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
         begin
             exit!
@@ -187,6 +188,7 @@ def river_cross_answer
         system "clear"
         Process.kill("SIGKILL", $process_id)
         puts $try_again
+        puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
         begin
             exit!
@@ -213,6 +215,7 @@ def beverage_choice
         system("killall afplay")
         system "clear"
         puts $try_again
+        puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
         begin
             exit!
@@ -297,6 +300,7 @@ def riddles
         system "clear"
         Process.kill("SIGKILL", $process_id)
         puts $try_again
+        puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
         begin
             exit!
@@ -344,6 +348,7 @@ def riddles
         system "clear"
         Process.kill("SIGKILL", $process_id)
         puts $try_again
+        puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
         begin
             exit!
@@ -395,6 +400,7 @@ def riddles
         system "clear"
         Process.kill("SIGKILL", $process_id)
         puts $try_again
+        puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
         begin
             exit!
@@ -457,6 +463,7 @@ def dragon_run_direction_left
             puts "You attempt to use the #{$tool} on the dragon but before you can do anything it swipes you off your feet and burns you with its firey breath..... #{$death_emoji}(Restart Game)"
             Process.kill("SIGKILL", $process_id)
             puts $try_again
+            puts argv_fail_message
             $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
             begin
                 exit!
@@ -493,6 +500,7 @@ def dragon_run_direction_left
             puts "\n""\n""\n"
             sleep(3)
             puts $thank_you
+            puts argv_fail_message
             Process.kill("SIGKILL", $process_id)
             begin
                 exit!
@@ -504,6 +512,7 @@ def dragon_run_direction_left
                 puts "The dragon swoops in and eats you #{$death_emoji}(Restart Game)"
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
+                puts argv_fail_message
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
                 begin
                     exit!
@@ -517,6 +526,7 @@ def dragon_run_direction_left
                 puts "The dragon sits back and agrees to the offer, and allows you safe passage in and out of the lair"
                 sleep(3)
                 puts $thank_you
+                puts argv_fail_message
                 Process.kill("SIGKILL", $process_id)
                 begin
                     exit!
@@ -531,6 +541,7 @@ def dragon_run_direction_left
                 sleep(3)
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
+                puts argv_fail_message
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
                 begin
                     exit!
@@ -569,6 +580,7 @@ def dragon_run_direction_right
             puts "The dragon ate you"
             Process.kill("SIGKILL", $process_id)
             puts $try_again
+            puts argv_fail_message
             $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
             begin
                 exit!
@@ -608,6 +620,7 @@ def dragon_run_direction_right
                 puts "You attempt to use the .... you died#{$death_emoji}(Restart Game)"
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
+                puts argv_fail_message
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
                 begin
                     exit!
@@ -620,6 +633,7 @@ def dragon_run_direction_right
                 puts "You attempt to use the #{$potion} but before you can drink it the dragon eats you"
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
+                puts argv_fail_message
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
                 begin
                     exit!
@@ -631,3 +645,8 @@ def dragon_run_direction_right
     end
 end
 
+#ADDITIONAL ARGV USED TO PRINT MESSAGE WHEN THE USER FAILS
+def argv_fail_message
+    puts "Thank you for attempting to play my game, but unfortunatlly" + " #{$fail_message}!".red
+end
+#END
