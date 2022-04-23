@@ -139,12 +139,8 @@ def user_choice_bridge_answer
         puts $try_again
         puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-        begin
-            exit!
-          rescue SystemExit
-            p 123
-          end
-        return
+        restart_option_prompt
+
     elsif $user_choice1_left == "no"
         puts "You look around and notice a narrow path that leads to a cave near some large trees #{$tree}."
         puts "#{$character_name} you have finally made your way through the cave and walk out into the light."  
@@ -190,12 +186,13 @@ def river_cross_answer
         puts $try_again
         puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-        begin
-            exit!
-          rescue SystemExit
-            p 123
-          end 
-        return
+
+        require "tty-prompt"
+        $prompt = TTY::Prompt.new
+        choice = %w(yes no)
+        $user_restart = $prompt.select("Want to play again #{$character_name}", choice)
+        system "clear"
+        restart_option_prompt
     end
 end
 #END
@@ -217,12 +214,8 @@ def beverage_choice
         puts $try_again
         puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-        begin
-            exit!
-          rescue SystemExit
-            p 123
-          end 
-        return
+        restart_option_prompt
+
     elsif $user_choice_beverage == "wine"
         puts "You take a seat and finish your wine #{$wine}"
         puts "But before you know it you have leave to continue on your adventure"
@@ -302,12 +295,8 @@ def riddles
         puts $try_again
         puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-        begin
-            exit!
-        rescue SystemExit
-            p 123
-        end 
-        return
+        restart_option_prompt
+
     elsif
         puts "Well done" + " #{$character_name}" + " you have passed the first Riddle by guessing the correct answer".green + " #{user_guess} #{$dragon}".yellow
         puts "Please take your #{$key_emoji}"
@@ -350,12 +339,8 @@ def riddles
         puts $try_again
         puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-        begin
-            exit!
-        rescue SystemExit
-            p 123
-        end
-        return
+        restart_option_prompt
+
     else 
         puts "Well done" + " #{$character_name}" + " you have passed the second Riddle by guessing the correct answer ".green + " #{user_guess} #{$echo}".yellow
         puts "Please take your #{$key_emoji}"
@@ -402,12 +387,8 @@ def riddles
         puts $try_again
         puts argv_fail_message
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-        begin
-            exit!
-        rescue SystemExit
-            p 123
-        end
-        return
+        restart_option_prompt
+
     else
         #Adding keys to the locks with time delay sleep() function=========================================================
         puts "Well done #{$character_name} you have unlocked the secret passage to the Dragons Lair by guessing".green + " #{user_guess} #{$fire_emoji}".yellow
@@ -465,12 +446,8 @@ def dragon_run_direction_left
             puts $try_again
             puts argv_fail_message
             $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-            begin
-                exit!
-              rescue SystemExit
-                p 123
-              end 
-            return
+            restart_option_prompt
+
         #Second Chance Life BASED on Potion Selection..
         elsif $user_choice_attack == "yes" && $potion == "Dragon-Breath"
             puts "You attempt to use the #{$tool} on the dragon but before you can do anything it blasts you with a fire ball..... #{$death_emoji}"
@@ -502,24 +479,15 @@ def dragon_run_direction_left
             puts $thank_you
             puts argv_fail_message
             Process.kill("SIGKILL", $process_id)
-            begin
-                exit!
-              rescue SystemExit
-                p 123
-              end
-            return
+            restart_option_prompt
+
         elsif $second_chance == "no"
                 puts "The dragon swoops in and eats you #{$death_emoji}(Restart Game)"
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
                 puts argv_fail_message
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-                begin
-                    exit!
-                  rescue SystemExit
-                    p 123
-                  end 
-                return
+                restart_option_prompt
     
         elsif  $user_choice_attack == "no" && $potion == "Dragon-Breath"
                 puts "You drop the #{$tool} on the floor and tell the dragon you are there to offer your protection"
@@ -528,12 +496,8 @@ def dragon_run_direction_left
                 puts $thank_you
                 puts argv_fail_message
                 Process.kill("SIGKILL", $process_id)
-                begin
-                    exit!
-                  rescue SystemExit
-                    p 123
-                  end
-                return
+                restart_option_prompt
+
             elsif  $user_choice_attack == "no" && $potion != "Dragon-Breath"
                 puts "You drop the #{$tool} on the floor and tell the dragon you are there to offer your protection"
                 puts "You then realise that you choose the wrong potion and the dragon thinks you taste great"
@@ -543,12 +507,7 @@ def dragon_run_direction_left
                 puts $try_again
                 puts argv_fail_message
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-                begin
-                    exit!
-                  rescue SystemExit
-                    p 123
-                  end
-                return
+                restart_option_prompt
     end
 end
 #END
@@ -582,12 +541,7 @@ def dragon_run_direction_right
             puts $try_again
             puts argv_fail_message
             $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-            begin
-                exit!
-              rescue SystemExit
-                p 123
-              end 
-            return
+            restart_option_prompt
         
         elsif  $user_choice_attack == "no" && $potion == "Dragon-Breath"
                 puts "You decide to drink the #{$potion} and you start to feel strange..."
@@ -609,12 +563,7 @@ def dragon_run_direction_right
                 sleep(8)
                 puts $to_be_continued
                 Process.kill("SIGKILL", $process_id)
-                begin
-                    exit!
-                  rescue SystemExit
-                    p 123
-                  end
-                return
+                restart_option_prompt
         
         elsif $user_choice_attack == "yes" && $potion == "Dragon-Breath"
                 puts "You attempt to use the .... you died#{$death_emoji}(Restart Game)"
@@ -622,12 +571,7 @@ def dragon_run_direction_right
                 puts $try_again
                 puts argv_fail_message
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-                begin
-                    exit!
-                  rescue SystemExit
-                    p 123
-                  end 
-                return
+                restart_option_prompt
 
         elsif $user_choice_attack == "yes" && $potion != "Dragon-Breath"
                 puts "You attempt to use the #{$potion} but before you can drink it the dragon eats you"
@@ -635,18 +579,41 @@ def dragon_run_direction_right
                 puts $try_again
                 puts argv_fail_message
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-                begin
-                    exit!
-                  rescue SystemExit
-                    p 123
-                  end 
-                return
+                restart_option_prompt
         end
     end
 end
+#END
+
 
 #ADDITIONAL ARGV USED TO PRINT MESSAGE WHEN THE USER FAILS
 def argv_fail_message
     puts "Thank you for attempting to play my game, but unfortunatlly" + " #{$fail_message}!".red
 end
 #END
+
+#OPTION FOR THE USER TO RESTART THE GAME STORY
+def restart_option_prompt
+    require "tty-prompt"
+    $prompt = TTY::Prompt.new
+    choice = %w(yes no)
+    $user_restart = $prompt.select("Want to play again #{$character_name} ?", choice)
+    system "clear"
+
+    if $user_restart == "yes"
+        puts "Now returning you back to the beginning of the story".green
+        sleep(4)
+        system "clear"
+        $process_id = spawn "afplay -v 0.2 It_Is_Coming_-_David_Fesliyan.mp3" 
+        sleep(3)
+        puts intro_story
+    else
+        puts "Hope to see you soon #{$character_name}!"
+        sleep(3)
+        begin
+            exit!
+        rescue SystemExit
+            p 123
+        end 
+    end
+end
