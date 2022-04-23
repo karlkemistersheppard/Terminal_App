@@ -95,33 +95,33 @@ puts user_choice_bridge
 
 system "clear"
 
-#BEVERAGE ANSWER - File/Method Location *methods.rb 133-154
+#BEVERAGE ANSWER - File/Method Location *methods.rb 132-150
 puts user_choice_bridge_answer
 #END
 
-#DO YOU WISH TO CROSS THE RIVER - File/Method Location *methods.rb 157-167
+#DO YOU WISH TO CROSS THE RIVER - File/Method Location *methods.rb 153-163
 puts river_cross
 #END
 
 system "clear"
 
-#CROSS RIVER YES/NO - File/Method Location *methods.rb 170-201
+#CROSS RIVER YES/NO - File/Method Location *methods.rb 165-198
 puts river_cross_answer
 #END
 
 system "clear"
 
-#BEVERAGE CHOICE - File/Method Location *methods.rb 204-232
+#BEVERAGE CHOICE - File/Method Location *methods.rb 201-225
 puts beverage_choice
 #END
 
 system "clear"
 
-#ENTER CAVE - File/Method Location *methods.rb 235-258
+#ENTER CAVE - File/Method Location *methods.rb 228-251
 puts cave_enter
 #END
 
-#RIDDLES START - File/Method Location *methods.rb 260-447
+#RIDDLES START - File/Method Location *methods.rb 254-428
 puts riddles
 #END
 
@@ -161,21 +161,21 @@ bar = TTY::ProgressBar.new("Unlocking Secret Door [:bar]".colorize(:blue), total
 end
 sleep(4)
 system "clear"
-puts door_opening # - File/Method Location *methods.rb 421-431
+puts door_opening # - File/Method Location *methods.rb 402-412
 
 process_id = spawn "afplay Dragon.mp3"
 sleep(12)
 #END
 
-#DRAGON ENCOUNTER - File/Method Location *methods.rb 434-447
+#DRAGON ENCOUNTER - File/Method Location *methods.rb 415-428
 puts dragon_encounter
 #END
 
-#USER CHOICE DRAGON LEFT - File/Method Location *methods.rb 450-554
+#USER CHOICE DRAGON LEFT - File/Method Location *methods.rb 431-513
 puts dragon_run_direction_left
 #END
 
-#USER CHOICE DRAGON RIGHT - File/Method Location *methods.rb 557-646
+#USER CHOICE DRAGON RIGHT - File/Method Location *methods.rb 516-586
 puts dragon_run_direction_right
 #END
 
