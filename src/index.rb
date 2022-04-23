@@ -122,9 +122,6 @@ puts cave_enter
 puts riddles
 #END
 
-
-#INSERTING KEYS START
-
 #TTY-PROMPT UNLOCKING KEYS + AUDIO FILES
 bar = TTY::ProgressBar.new("Insert your first key #{$key_emoji}".colorize(:green), total: 1) # Added TTY Progress bar showing quiz is downloading for UX
     1.times do
@@ -151,6 +148,7 @@ bar = TTY::ProgressBar.new("Insert your third key #{$key_emoji}".colorize(:green
 end
 process_id = spawn "afplay unlock.mp3"
 sleep(2)
+#END
 
 #UNLOCKING SECRET DOOR
 bar = TTY::ProgressBar.new("Unlocking Secret Door [:bar]".colorize(:blue), total: 35) # Added TTY Progress bar showing quiz is downloading for UX
@@ -164,6 +162,7 @@ puts door_opening
 
 process_id = spawn "afplay Dragon.mp3"
 sleep(12)
+#END
 
 #DRAGON ENCOUNTER
 puts dragon_encounter
