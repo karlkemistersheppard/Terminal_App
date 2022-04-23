@@ -1,12 +1,12 @@
 # T1A3_Terminal_App
 
 ### Source Control Repository
-Below is a link to the first source control repository that was created prior to Slide Deck presentation.
-From there, i created a second branch called modulairze and pushed all further updates to ensure that i had a backup copy of the working application prior to modulairzing the index.rb by transfering majority of the index code to defined methods.
+Below is a link to the first source control repository that was created before the Slide Deck presentation.
+From there, I created a second branch called modularize and pushed all further updates to ensure that I had a backup copy of the working application before modularizing the index.rb by transferring the majority of the index code to defined methods.
 ### First Repo- prior to presentations (24 commits)
 https://github.com/karlkemistersheppard/Terminal_App/tree/main
 ### Final Destination (42 commits +) 
-Marking for the assesment to be done on this file. (Once marking is completed i will merge the branch into the main)
+Marking for the assessment to be done on this file. (Once marking is completed I will merge the branch into the main)
 https://github.com/karlkemistersheppard/Terminal_App/tree/modulairze
 
 
@@ -15,12 +15,12 @@ https://github.com/karlkemistersheppard/Terminal_App/tree/modulairze
 #### R5- Identify any code style guide or styling conventions that the application will adhere to.
 
 Code styling for the Terminal Application is designed to be simplistic, clean and easy to read.
-The general styling is based on each code block or method to be wrapped in a #HEADING and followed by a trailing #END to ensure whoever is reading the syntax can clearly identify when a method is called.
+The general styling is based on each code block or method to be wrapped in a #HEADING and followed by a trailing #END to ensure whoever is reading the syntax can identify when a method is called.
 
 All code blocks are invoked from external .rb files either using $global variable/values or wrapped in def methods to ensure that the main index.rb file is kept as clean as possible.
 The styling convention of the index.rb file is laid out from top to bottom following the same flow in the methods.rb file.  Each method is labelled with meaningful titles to ensure that it’s easy to read and follow.
 
-There are a few code blocks that are exempt from this styling, specifically the tty-progress bar that even though it works without issues- when wrapped inside a def method causes the progress bar to prints a random value to the screen but displays no error.
+There are a few code blocks that are exempt from this styling, specifically the tty-progress bar that even though it works without issues- when wrapped inside a def method causes the progress bar to print a random value to the screen but displays no error.
 
 Additional styling that was added later on in the development of the application was the conversion from standard STDIN.gets.chomp user input to TTY-Prompt to simplify the UX and Error Handling issues associated with incorrect user input.
 
@@ -66,7 +66,7 @@ puts potion_selection
 #END
 ```
 ##### Example 
-Styling conventions transfer across to the method.rb file and additional files to ensure its consistant for the viewers.
+Styling conventions transfer across to the method.rb file and additional files to ensure its consistency for the viewers.
 
 ```ruby
 #CREATE CHARACTER NAME
@@ -129,10 +129,9 @@ end
 ### Features
 R6	Develop a list of features that will be included in the application. It must include:
   
-### Feature 1 (Control Structures)
-####Feature 1: 
+### Feature 1 (Control Structures) 
 
-The below code block is taken form one of the riddles that where implemented into the adventure game to test the users.
+The below code block is taken from one of the riddles that were implemented into the adventure game to test the users.
 The control structure for this particular block consists of a large variety of:
 ##### While loops & if else statements
 
@@ -185,7 +184,7 @@ if out_of_guesses
 ```
 ##### Error Handling
 
-Ive added the below into each endpoint in the users journey to ensure that the program exits/terminates after the TRY AGAIN prompt is displayed.
+I've added the below to each endpoint in the user's journey to ensure that the program exits/terminates after the TRY AGAIN prompt is displayed.
 ```ruby
         begin
             exit!
@@ -268,7 +267,7 @@ end
 
 ##### Error Handling
 
-Error handling for the TTY-Prompt is basically dealt with by the Development team that created and maintain the Gem.
+Error handling for the TTY-Prompt is dealt with by the Development team that created and maintain the Gem.
 It forces the user to select from a list of items presented on the display and in this case it provides no option to exit or bypass the prompt.select.
 
 ```ruby
@@ -287,7 +286,7 @@ This is a powerful way to hide secret second chance options based on conditions 
 ```ruby
 #Second Chance Life BASED on Potion Selection.. LINE 465 Methods.rb
         elsif $user_choice_attack == "yes" && $potion == "Dragon-Breath"
-            puts "You attempt to use the #{$tool} on the dragon but before you can do anything it blasts you with a fire ball..... #{$death_emoji}"
+            puts "You attempt to use the #{$tool} on the dragon but before you can do anything it blasts you with a fireball..... #{$death_emoji}"
             sleep(2)
             puts "But wait...."
             sleep(1)
@@ -302,12 +301,12 @@ This is a powerful way to hide secret second chance options based on conditions 
             require "tty-prompt"
             $prompt = TTY::Prompt.new
             choice = %w(yes no)
-            $second_chance = $prompt.select("Do you wish ask for forgiveness from the dragon and offer your service #{$character_name}", choice)
+            $second_chance = $prompt.select("Do you wish to ask for forgiveness from the dragon and offer your service #{$character_name}", choice)
         end
 ```
 ##### Error Handling
 
-Error handing has not required for this function as the user choices where pre defined in the tty-prompt selector.
+Error handling has not been required for this function as the user choices were predefined in the tty-prompt selector.
 ```ruby
 choice = %w(yes no)
 ```
@@ -318,7 +317,7 @@ My main reason for choosing this feature was the complexity of using multiple va
 
 ##### Importing from TTY-Progressbar & Colorize Gem 
 
-Gemfile- added the below to and to initiate the gem i have added it the to top of the index.rb file so i can function correctly
+Gemfile- added the below to and to initiate the gem I have added it the to top of the index.rb file so I can function correctly.
 ```ruby
 gem "tty-progressbar", "~> 0.18.2"
 ```
@@ -352,7 +351,7 @@ system "clear"
 
 The below function uses a mix of variables both local and global, but more importantly its using these variables from inside index.rb and calls them from other methods such as the TTY-Prompt character creation method.  This was an important function as I wanted to utilise string interpolation to make the puts statement meaningful to the user by printing what they had selected in the string.
 
-An additional bonus feature was the inclusion of the emoji regex gem that allowed me to save unicode emojis in the $global_unicode.rb to variables and call them by assigning them via string interpolation at any given time.
+An additional bonus feature was the inclusion of the emoji regex gem that allowed me to save Unicode emojis in the $global_unicode.rb to variables and call them by assigning them via string interpolation at any given time.
 
 ```ruby
 #INCLUDES CALLING $GLOBAL VARIABLES AND GEM UNICODE + TTY-PROMPT PROGRESS BAR GEM
@@ -381,7 +380,7 @@ Once the -v control is set you can simply input the audio file name followed by 
 ```ruby
 $process_id = spawn "afplay -v 0.2 It_Is_Coming_-_David_Fesliyan.mp3" 
 ```
-Stage two is only needed if you wish to kill the function midstream,  this may be useful if you need the sound to be interrupted at any stage during the program.I used this process multiple times across the program when I needed to kill the process either when the game ended or the player failed.  One of the great features of using afplay is that you can overlap audio files such as what I’ve done within this program. 
+Stage two is only needed if you wish to kill the function midstream,  this may be useful if you need the sound to be interrupted at any stage during the program. I used this process multiple times across the program when I needed to kill the process either when the game ended or the player failed.  One of the great features of using afplay is that you can overlap audio files such as what I’ve done within this program. 
 
 I set It_Is_Coming_-_David_Fesliyan.mp3 to -v 0.2 to set the background noise whilst running  -v 1 Walking_into_Dungeon.mp3 over the background music.
 ```ruby
@@ -406,26 +405,26 @@ R7	Develop an implementation plan which:
 
 1. Create def method called riddles **DONE**
 2. Create variables and assign their values **DONE**
-3. Create While Loop to compaire while user_guess input is != (not equal) to correct_answer && user is !(not) out_of_guesses. **DONE**
+3. Create While Loop to compare while user_guess input is != (not equal) to correct_answer && user is !(not) out_of_guesses. **DONE**
 4. Create a conditional loop that checks if current_count is less than count_limit which then needs to take the current_count and increment it by +1 until user_count is equal to (3) **DONE**
-5. Create else condition that checks if the out_of_guesses is = to true, which then needed to run the next conditional check. **DONE**
-6. Create new condition to check if user is out_of_guesses then puts message to screen and terminate game. **DONE**
+5. Create else condition that checks if the out_of_guesses is = to true, which is then needed to run the next conditional check. **DONE**
+6. Create a new condition to check if the user is out_of_guesses then puts a message on the screen and terminate the game. **DONE**
 7. Add Audio kill feature **DONE**
 8. Puts Global variable $try_again to screen. **DONE**
 9. Added begin/rescue to run SystemExit. **DONE**
-10. Add elsif if the new condition is not true- then puts message to the screen "Well Done" if user guesses correct_answer. **DONE**
+10. Add elsif if the new condition is not true- then puts message to the screen "Well Done" if the user guesses correct_answer. **DONE**
 
 #### Feature 2 (Estimated Time Allocation ? hrs)
 
 ##### Checklist
 
-1. Create method to contain each tty-prompt. **DONE**
+1. Create a method to contain each tty-prompt. **DONE**
 2. Initiate the tty-prompt with require. **DONE**
-3. Create local variable called choice and add in objects to create the list the user selects from ect (Male Female). **DONE**
-4. Create $Global variable for that will hold the users selection for from the list selctor. **DONE**
+3. Create a local variable called choice and add in objects to create the list the user selects from ect (Male Female). **DONE**
+4. Create $Global variable for that will hold the user's selection from the list selector. **DONE**
 5. Use string interpolation to add $character_name into the string to make the puts message more personal. **DONE**
 6. Use the $variable created externally in the game when required. **DONE**
-7. Test functions, and ensure Error are not present. **DONE**
+7. Test functions, and ensure Errors are not present. **DONE**
 
 #### Feature 3 (Estimated Time Allocation 1-2 hrs)
 
@@ -433,9 +432,9 @@ R7	Develop an implementation plan which:
 
 1. Install tty-progress gem and link to .rb file containing gem. **DONE**
 2. Copy Gem syntax from GitRepo Documents. **DONE**
-3. Modiify puts message that will be displayed inside the progress bar when its active. **DONE**
-4. Add $character_name into the pusts message using string interpolation. **DONE**
-5. Initilize colorize ruby gem to change the color of the bar. **DONE**
+3. Modify puts message that will be displayed inside the progress bar when it's active. **DONE**
+4. Add $character_name into the puts message using string interpolation. **DONE**
+5. Initialize colorize ruby gem to change the color of the bar. **DONE**
 6. Update iteration loop to 45 for time delay for UX. **DONE**
 7. Update bar print advance to 45 so it prints ========= to the screen. **DONE**
 8. Add system "clear". **DONE**
@@ -459,20 +458,20 @@ R7	Develop an implementation plan which:
 
 #### How to play
 
-To initiate the game from the Termainal once you have followed the install process.
+To initiate the game from the Terminal once you have followed the install process.
 Navigate inside the src directory via the command line/ terminal and enter the below to run the game.
 ```code
 ./run_index.rb
 ```
-You will be greated with the below option 
+You will be greeted with the below option 
 ```code
 1. Step one you already made it here
-2. Set two create your own custom name you would like to use for your character " + "BE CREATIVE".green + "
-3. Step three create your own character from the options provided
+2. Set two create your custom name you would like to use for your character " + "BE CREATIVE".green + "
+3. Step three create your character from the options provided
 4. Step four adjust your sound
 5. Step five read the story and try to navigate your way to the exit without dying
 6. Step six if you fail, try again until you reach the end game         
-7. Have fun along the way... I hope you enjoy the adventure as much as i did creating it
+7. Have fun along the way... I hope you enjoy the adventure as much as i did create it
 8. Now go find that
 ```
 ![Start Screen](./docs/1.%20start_screen.png)
@@ -492,12 +491,12 @@ R8	Design help documentation which includes a set of instructions which accurate
 
 ##### How to install
 
-**Before** you get started, i want to say thank you for downloading my first ever Terminal Applicaiton I have ever created.
-I hope you enjoy it as much as i did making it.
+**Before** you get started, I want to say thank you for downloading my first ever Terminal Application I have ever created.
+I hope you enjoy it as much as I did making it.
 
 1. **Install ruby** [Install Ruby HERE](https://www.ruby-lang.org/en/documentation/installation/)
 2. **Install Git** to your local machine so you can clone repo from Github [Install Git HERE](https://git-scm.com/downloads)
-3. Once you have Installed Step (1,2) **Clone** the below repo to your local machine [Download Repo from HERE](git@github.com:karlkemistersheppard/Terminal_App.git)
+3. 3. Once you have Installed Step (1,2) **Clone** the below repo to your local machine [Download Repo from HERE](git@github.com:karlkemistersheppard/Terminal_App.git)
    ```code
    git@github.com:karlkemistersheppard/Terminal_App.git
    ```
@@ -513,11 +512,11 @@ I hope you enjoy it as much as i did making it.
 
    #installing the bundler gem
    gem install bundler
-   #installing the gems required for the applicaiton
+   #installing the gems required for the application
    bundle install
    clear
-   #runs the applicaiton
-   ruby index.rb "Dragons Lair" "KARL" #Command line ARGV are available my modifying these two strings
+   #runs the application
+   ruby index.rb "Dragons Lair" "KARL" #Command line ARGV is available my modifying these two strings
     ```
 
 7. Bundler will **install** the following Ruby Gems and their dependencies. 
