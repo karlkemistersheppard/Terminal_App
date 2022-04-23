@@ -1,12 +1,14 @@
-
+#TTY-PROMOPT HOW TO PLAY @ GAME START
 def tty_prompt_instructions
     $prompt = TTY::Prompt.new
 
+    #START OPTION PROMPT
     def start_options
         $answer = $prompt.select("+ ", ["HOW TO PLAY","Exit"])
     end
-    
-    # Gender Select
+    #END
+
+    #HOW TO PLAY INSTRUCTIONS
     def how_to_play
         $about = $prompt.select("\n""How to play:
 
@@ -27,7 +29,8 @@ def tty_prompt_instructions
         8. Now go find that
         ",$about,["Exit",])
     end
-    
+    #END
+
     option =""
     while option != "Exit"
         option = start_options
@@ -40,6 +43,8 @@ def tty_prompt_instructions
     end
     system "clear"
 end
+#END
+
 
 #CREATE CHARACTER NAME
 def create_character_name
@@ -52,6 +57,7 @@ def create_character_name
     end
 end
 #END
+
 
 #CHARACTER CREATION MENUS
 def gender_selction
@@ -80,6 +86,7 @@ def potion_selection
 end
 #END
 
+
 #INTRO TO STORY
 def intro_story
     puts "#{$character_name} can you hear me....." + "whispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
@@ -97,7 +104,7 @@ def intro_story
 end
 #END
 
-
+#USER CHOICE ONE DIRECTIONAL PATH TO START
 def user_choice1
     if $user_choice1 == "left"
         puts "You take the left path"
@@ -105,8 +112,10 @@ def user_choice1
         puts "You take the right path"
     end
 end
+#END
 
-#BRIDGE CROSSING- not working
+
+#BRIDGE CROSSING CHOICE
 def user_choice_bridge
     if $user_choice1 == "left"
         puts "You walk for 1 day until you reach a cliff #{$mountain_cliff}"  
@@ -118,8 +127,9 @@ def user_choice_bridge
         system "clear"
     end
 end
+#END
 
-
+#BRIDGE CROSSING ANSWER YES- END OF GAME
 def user_choice_bridge_answer
     if $user_choice1_left == "yes"
         puts "You step out onto the bridge, and the support rope breaks... and you have fallen to your death #{$death_emoji}" + "(Restart Game)".red
@@ -140,8 +150,10 @@ def user_choice_bridge_answer
         puts "Across the field you see a creepy tavern on the otherside of a rocky river"
     end  
 end
+#END
 
-#RIVER CROSS QUESTION- not working
+
+#RIVER CROSS QUESTION NO- DIRECTION TO RIVER
 def river_cross
     if $user_choice1 == "right" || $user_choice1_left == "no"
         puts "You walk across the field until you reach a river"
@@ -151,7 +163,9 @@ def river_cross
         $user_choice_river = $prompt.select("Do you wish to cross the river #{$character_name}", choice)
     end
 end
+#END
 
+#RIVER CROSSING ANSWER YES/NO
 def river_cross_answer
     if $user_choice_river == "yes"
         puts "You cross the river and find a tavern on the otherside offering free beverages #{$beverage}"
@@ -182,9 +196,10 @@ def river_cross_answer
         return
     end
 end
+#END
 
-#BEVERAGE CHOICE- not working
 
+#BEVERAGE CHOICE WATER/WINE
 def beverage_choice
     if $user_choice_beverage == "water"
         puts "You drink the water and immediatly feel strange...."
@@ -211,9 +226,10 @@ def beverage_choice
     end
     system "clear"
 end
+#END
 
 
-#ENTERING CAVE WITH AUDIO STREAM
+#ENTERING CAVE WITH AUDIO STREAM- STORY MESSAGE
 def cave_enter
     puts "After half a days walk you finally across splinters ridge and take the long walk up to scarecrow's mountain #{$mountain_cliff}"
     sleep(1)
@@ -236,9 +252,9 @@ def cave_enter
     sleep(4)
     puts "You walk through and the door closes behind you and locks."
 end
-#ENTERING CAVE WITH AUDIO STREAM END
+#END
 
-
+#RIDDLES 1,2,3
 def riddles
     #RIDDLE ONE
     correct_answer = "dragon"
@@ -282,7 +298,6 @@ def riddles
         Process.kill("SIGKILL", $process_id)
         puts $try_again
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-        # system("killall afplay")
         begin
             exit!
         rescue SystemExit
@@ -330,7 +345,6 @@ def riddles
         Process.kill("SIGKILL", $process_id)
         puts $try_again
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-        # system("killall afplay")
         begin
             exit!
         rescue SystemExit
@@ -382,7 +396,6 @@ def riddles
         Process.kill("SIGKILL", $process_id)
         puts $try_again
         $process_id = spawn "afplay -v 0.2 fail_effect.mp3" 
-        # system("killall afplay")
         begin
             exit!
         rescue SystemExit
@@ -397,11 +410,9 @@ def riddles
     end
     end
 
-
     #TTY-PROMPT UNLOCKING KEYS + AUDIO FILES- reference index.rb
 
     # #UNLOCKING SECRET DOOR- reference index.rb
-
     def door_opening
         puts "\n"
         sleep(1)
@@ -427,18 +438,10 @@ def riddles
             puts "You have decided to run to the right"
         end
 end
-
-#TTY-PROMPT UNLOCKING KEYS + AUDIO FILES END
-
-
-
-
-
-
+#END
 
 
 #DRAGON RUN DIRECTION LEFT
-
 def dragon_run_direction_left
     if $user_choice_dragon == "left"
         puts "You run to the left and slip on a pile of bones...."
@@ -452,7 +455,6 @@ def dragon_run_direction_left
     
         if $user_choice_attack == "yes" && $potion != "Dragon-Breath"
             puts "You attempt to use the #{$tool} on the dragon but before you can do anything it swipes you off your feet and burns you with its firey breath..... #{$death_emoji}(Restart Game)"
-            # system "clear"
             Process.kill("SIGKILL", $process_id)
             puts $try_again
             $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
@@ -490,10 +492,8 @@ def dragon_run_direction_left
             puts "The dragon excepts your offer and allows you to live"
             puts "\n""\n""\n"
             sleep(3)
-            # system "clear"
             puts $thank_you
             Process.kill("SIGKILL", $process_id)
-            # system("killall afplay")
             begin
                 exit!
               rescue SystemExit
@@ -502,7 +502,6 @@ def dragon_run_direction_left
             return
         elsif $second_chance == "no"
                 puts "The dragon swoops in and eats you #{$death_emoji}(Restart Game)"
-                # system "clear"
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
@@ -517,10 +516,8 @@ def dragon_run_direction_left
                 puts "You drop the #{$tool} on the floor and tell the dragon you are there to offer your protection"
                 puts "The dragon sits back and agrees to the offer, and allows you safe passage in and out of the lair"
                 sleep(3)
-                # system "clear"
                 puts $thank_you
                 Process.kill("SIGKILL", $process_id)
-                # system("killall afplay")
                 begin
                     exit!
                   rescue SystemExit
@@ -532,7 +529,6 @@ def dragon_run_direction_left
                 puts "You then realise that you choose the wrong potion and the dragon thinks you taste great"
                 puts "You dont want to see what happens next............"
                 sleep(3)
-                # system "clear"
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
@@ -544,7 +540,7 @@ def dragon_run_direction_left
                 return
     end
 end
-#DRAGON RUN DIRECTION LEFT END
+#END
 
 
 #DRAGON RUN DIRECTION RIGHT
@@ -571,7 +567,6 @@ def dragon_run_direction_right
             puts "Wish your last breath you...."
             sleep(3)
             puts "The dragon ate you"
-            # system "clear"
             Process.kill("SIGKILL", $process_id)
             puts $try_again
             $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
@@ -602,7 +597,6 @@ def dragon_run_direction_right
                 sleep(8)
                 puts $to_be_continued
                 Process.kill("SIGKILL", $process_id)
-                # system("killall afplay")
                 begin
                     exit!
                   rescue SystemExit
@@ -612,7 +606,6 @@ def dragon_run_direction_right
         
         elsif $user_choice_attack == "yes" && $potion == "Dragon-Breath"
                 puts "You attempt to use the .... you died#{$death_emoji}(Restart Game)"
-                # system "clear"
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
@@ -625,7 +618,6 @@ def dragon_run_direction_right
 
         elsif $user_choice_attack == "yes" && $potion != "Dragon-Breath"
                 puts "You attempt to use the #{$potion} but before you can drink it the dragon eats you"
-                # system "clear"
                 Process.kill("SIGKILL", $process_id)
                 puts $try_again
                 $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
