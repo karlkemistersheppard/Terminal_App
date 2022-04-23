@@ -398,81 +398,64 @@ system("killall afplay")
 #### Trello Board
 https://trello.com/b/oZLNoiP9/t1a3-terminal-app-kks
 
-R7	
-Develop an implementation plan which:
-- outlines how each feature will be implemented and a checklist of tasks for each feature
-- prioritise the implementation of different features, or checklist items within a feature
-- provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
+R7	Develop an implementation plan which:
 
-#### Feature 1 (Estimated Time Allocation ? hrs)
+#### Feature 1 (Estimated Time Allocation 6-7h hrs)
 
 ##### Checklist
 
-1. /
-2. /
-3. /
-4. /
-5. /
-6. /
-7. /
-8. /
-9. /
-10. 
+1. Create def method called riddles **DONE**
+2. Create variables and assign their values **DONE**
+3. Create While Loop to compaire while user_guess input is != (not equal) to correct_answer && user is !(not) out_of_guesses. **DONE**
+4. Create a conditional loop that checks if current_count is less than count_limit which then needs to take the current_count and increment it by +1 until user_count is equal to (3) **DONE**
+5. Create else condition that checks if the out_of_guesses is = to true, which then needed to run the next conditional check. **DONE**
+6. Create new condition to check if user is out_of_guesses then puts message to screen and terminate game. **DONE**
+7. Add Audio kill feature **DONE**
+8. Puts Global variable $try_again to screen. **DONE**
+9. Added begin/rescue to run SystemExit. **DONE**
+10. Add elsif if the new condition is not true- then puts message to the screen "Well Done" if user guesses correct_answer. **DONE**
 
 #### Feature 2 (Estimated Time Allocation ? hrs)
 
 ##### Checklist
 
-1. /
-2. /
-3. /
-4. /
-5. /
-6. /
-7. /
-8. /
-9. /
-10. 
+1. Create method to contain each tty-prompt. **DONE**
+2. Initiate the tty-prompt with require. **DONE**
+3. Create local variable called choice and add in objects to create the list the user selects from ect (Male Female). **DONE**
+4. Create $Global variable for that will hold the users selection for from the list selctor. **DONE**
+5. Use string interpolation to add $character_name into the string to make the puts message more personal. **DONE**
+6. Use the $variable created externally in the game when required. **DONE**
+7. Test functions, and ensure Error are not present. **DONE**
 
-
-#### Feature 3 (Estimated Time Allocation ? hrs)
+#### Feature 3 (Estimated Time Allocation 1-2 hrs)
 
 ##### Checklist
 
-1. /
-2. /
-3. /
-4. /
-5. /
-6. /
-7. /
-8. /
-9. /
-10. 
+1. Install tty-progress gem and link to .rb file containing gem. **DONE**
+2. Copy Gem syntax from GitRepo Documents. **DONE**
+3. Modiify puts message that will be displayed inside the progress bar when its active. **DONE**
+4. Add $character_name into the pusts message using string interpolation. **DONE**
+5. Initilize colorize ruby gem to change the color of the bar. **DONE**
+6. Update iteration loop to 45 for time delay for UX. **DONE**
+7. Update bar print advance to 45 so it prints ========= to the screen. **DONE**
+8. Add system "clear". **DONE**
 
-
-
-
-Provide screenshots/images and/or a reference to an accessible project management platform used to track this implementation plan. 
+##### Development Process
 
 ![alt text](./docs/Development%20Process%20Plan.png)
 ![alt text](./docs/Flow_Chart_Control.drawio.png)
+
+##### Development Process Trello
 ![alt text](./docs/Screen%20Shot%202022-04-14%20at%207.20.27%20pm.png)
 ![alt text](./docs/Screen%20Shot%202022-04-16%20at%201.42.05%20am.png)
 ![alt text](./docs/Screen%20Shot%202022-04-21%20at%204.03.27%20pm.png)
 ![alt text](./docs/Screen%20Shot%202022-04-21%20at%209.30.14%20am.png)
 ![alt text](./docs/Screen%20Shot%202022-04-22%20at%2010.05.44%20pm.png)
 ![alt text](./docs/Screen%20Shot%202022-04-23%20at%2012.09.48%20am.png)
+![alt text](./docs/Screen%20Shot%202022-04-23%20at%2012.57.20%20pm.png)
+![alt text](./docs/)
 
 ### Help Documentation
-
-
-
-
-
-
-
-
 
 #### How to play
 
@@ -492,68 +475,119 @@ You will be greated with the below option
 7. Have fun along the way... I hope you enjoy the adventure as much as i did creating it
 8. Now go find that
 ```
-![alt text](./docs/1.%20start_screen.png)
-![alt text](./docs/2.%20How_to_play.png)
-![alt text](./docs/3.%20Landing_Logo.png)
-![alt text](./docs/4.%20Gender_TTY.png)
-![alt text](./docs/5.%20Race_TTY.png)
-![alt text](./docs/6.%20Tool_TTY.png)
-![alt text](./docs/7.%20Potion_TTY.png)
-![alt text](./docs/8.%20Progress_Bar_Loading.png)
-![alt text](./docs/9.%20Story_intro.png)
-![alt text](./docs/10.%20TRY_AGAIN.png)
-
-
-
-
-
-
-
-
-
-
-
-
+![Start Screen](./docs/1.%20start_screen.png)
+![How to play](./docs/2.%20How_to_play.png)
+![Landing Logo](./docs/3.%20Landing_Logo.png)
+![Gender TTY-Prompt](./docs/4.%20Gender_TTY.png)
+![Race TTY-Prompt](./docs/5.%20Race_TTY.png)
+![Tool TTY-Prompt](./docs/6.%20Tool_TTY.png)
+![Potion TTY-Prompt](./docs/7.%20Potion_TTY.png)
+![TTY ProgressBar](./docs/8.%20Progress_Bar_Loading.png)
+![Story Intro](./docs/9.%20Story_intro.png)
+![Example of TRY AGAIN](./docs/10.%20TRY_AGAIN.png)
 
 #### Instalation Instructions
 
-R8	
-Design help documentation which includes a set of instructions which accurately describe how to use and install the application.
+R8	Design help documentation which includes a set of instructions which accurately describe how to use and install the application.
 
-You must include:
-- steps to install the application
-- any dependencies required by the application to operate
-- any system/hardware requirements
-- how to use any command line arguments made for the application
+##### How to install
+
+**Before** you get started, i want to say thank you for downloading my first ever Terminal Applicaiton I have ever created.
+I hope you enjoy it as much as i did making it.
+
+1. **Install ruby** [Install Ruby HERE](https://www.ruby-lang.org/en/documentation/installation/)
+2. **Install Git** to your local machine so you can clone repo from Github [Install Git HERE](https://git-scm.com/downloads)
+3. Once you have Installed Step (1,2) **Clone** the below repo to your local machine [Download Repo from HERE](git@github.com:karlkemistersheppard/Terminal_App.git)
+   ```code
+   git@github.com:karlkemistersheppard/Terminal_App.git
+   ```
+4. **Open** your Terminal
+5. **Navigate** to the src directory
+6. **Run** the below once you are in the correct directory (check your sound volume before initiating)
+   ```code
+   ./run_index.sh
+   ```
+   Running the bash file will **install** the files contained in the Gemfile and run index.rb via the bash script.
+   ```ruby
+   #!/bin/bash
+
+   #installing the bundler gem
+   gem install bundler
+   #installing the gems required for the applicaiton
+   bundle install
+   clear
+   #runs the applicaiton
+   ruby index.rb "Dragons Lair" "KARL" #Command line ARGV are available my modifying these two strings
+    ```
+
+7. Bundler will **install** the following Ruby Gems and their dependencies. 
+
+##### frozen_string_literal: true
+
+```ruby
+   source "https://rubygems.org"
+```
+##### gem "rails"
+   
+```ruby
+   gem "colorize", "~> 0.8.1"
+   gem "tty-prompt", "~> 0.23.1"
+   gem "tty-progressbar", "~> 0.18.2"
+   gem 'emoji_regex'
+```
+8. If you wish to **modify** the command line **ARGV** (arguments) when you run the program you can change the two arguments by typing in the below.
+   ```ruby
+   ruby index.rb "ADD YOUR GAME TITLE" "ADD YOUR NAME HERE"
+    ``` 
+![ARGV PUTS](./docs/ARGV.png)
+
+9. HAVE FUN PLAYING :)
 
 
+## Reference list
 
-###
+262588213843476 (n.d.). Ruby CLI Audio Player example using afplay. [online] Gist. Available at: https://gist.github.com/ihollander/61b194622b7a5389a581ed2a270d0641 [Accessed 23 Apr. 2022].
 
+Castello, J. (2019a). How to Tell Your Ruby Program to Stop Running Early. [online] RubyGuides. Available at: https://www.rubyguides.com/2019/03/ruby-exit/ [Accessed 20 Apr. 2022].
 
+Castello, J. (2019b). Understanding Variable Scope & Binding Objects in Ruby. [online] RubyGuides. Available at: https://www.rubyguides.com/2019/03/ruby-scope-binding/ [Accessed 22 Apr. 2022].
 
+Emojipedia.org. (2019). Emojipedia — Home of Emoji Meanings. [online] Available at: https://emojipedia.org/ [Accessed 15 Apr. 2022].
 
+Kalbarczyk, M. (2009). colorize | RubyGems.org | your community gem host. [online] rubygems.org. Available at: https://rubygems.org/gems/colorize/versions/0.8.1.
 
+Murach, P. (2014). tty-progressbar | RubyGems.org | your community gem host. [online] rubygems.org. Available at: https://rubygems.org/gems/tty-progressbar [Accessed 23 Apr. 2022].
 
+Murach, P. (2015). tty-prompt | RubyGems.org | your community gem host. [online] rubygems.org. Available at: https://rubygems.org/gems/tty-prompt [Accessed 23 Apr. 2022].
 
+NanoDano (2019). Enhanced Shell Scripting with Ruby. [online] DevDungeon. Available at: https://www.devdungeon.com/content/enhanced-shell-scripting-ruby#toc-16 [Accessed 21 Apr. 2022].
 
+patorjk (n.d.). Text to ASCII Art Generator (TAAG). [online] patorjk.com. Available at: http://patorjk.com/software/taag/#p=testall&f=3D%20Diagonal&t=D%20R%20A%20G%20O%20N%20S%0A%20%20L%20A%20I%20R [Accessed 15 Apr. 2022].
 
+quicksounds.com. (n.d.). Knife Fall On Metal Ground 2 Sound Effect MP3 Download Free - Quick Sounds. [online] Available at: https://quicksounds.com/sound/17708/knife-fall-on-metal-ground-2 [Accessed 16 Apr. 2022].
 
+quicksounds.com. (n.d.). Sad Trombone Wah Wah Wah Fail Sound Effect MP3 Download Free - Quick Sounds. [online] Available at: https://quicksounds.com/sound/323/sad-trombone-wah-wah-wah-fail [Accessed 16 Apr. 2022].
 
+quicksounds.com. (n.d.). Scary Witch Cackle Sound Effect MP3 Download Free - Quick Sounds. [online] Available at: https://quicksounds.com/sound/8839/scary-witch-cackle [Accessed 16 Apr. 2022].
 
+Ruby Monsters (n.d.). Logical operators | Ruby for Beginners. [online] ruby-for-beginners.rubymonstas.org. Available at: http://ruby-for-beginners.rubymonstas.org/operators/logical.html [Accessed 21 Apr. 2022].
 
+RubyGuides. (2018). Ruby Variables: How to Use Them & What Types Are Available. [online] Available at: https://www.rubyguides.com/ruby-tutorial/variables/ [Accessed 21 Apr. 2022].
 
+Santa Clara University (2021). A Framework for Ethical Decision Making. [online] www.scu.edu. Available at: https://www.scu.edu/ethics/ethics-resources/a-framework-for-ethical-decision-making/ [Accessed 15 Apr. 2022].
 
-Reference:
+Sheppard, S. (n.d.). afplay Man Page - macOS - SS64.com. [online] ss64.com. Available at: https://ss64.com/osx/afplay.html [Accessed 21 Apr. 2022].
 
-Adding Audio to .rb [ONLINE] available at [https://gist.github.com/ihollander/61b194622b7a5389a581ed2a270d0641] viewed 15.04.2022.
-Adding volume control to element .mp3 [ONLINE] available at [https://www.unix.com/os-x-apple-/267933-osx-afplay-command-line-audio-player-_manual_.html] viewed 17.04.2022.
-Source [ONLINE] available at [https://www.fesliyanstudios.com/sound-effects-search.php?q=unlock+lock] viewed at 15.04.2022.
-Source [ONLINE] available at [https://www.fesliyanstudios.com/royalty-free-music/download/it-is-coming/262] viewed at 15.04.2022.
-Creating Text Image [ONLINE] available at [http://patorjk.com/software/taag/#p=testall&f=3D%20Diagonal&t=D%20R%20A%20G%20O%20N%20S%0A%20%20L%20A%20I%20R] viewed at 15.04.2022.
-Source Art [ONLINE] Available at [https://asciiart.website/index.php?art=creatures/dragons] viewed 15.04.2022.
-scary witch laugh https://quicksounds.com/sound/8839/scary-witch-cackle
-Knife sound effect https://quicksounds.com/sound/17708/knife-fall-on-metal-ground-2
-Fail sound effect https://quicksounds.com/sound/323/sad-trombone-wah-wah-wah-fail
-Unsplash image used for SlideDeck [ONLINE] available at [https://unsplash.com/photos/zQMN9fLJehM?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink] viewed 18.04.2022.
-How to force exit [ONLINE] available at [https://www.rubyguides.com/2019/03/ruby-exit/] viewed 20.04.2022
+Stack Overflow. (n.d.). markdown - How to add images to README.md on GitHub? [online] Available at: https://stackoverflow.com/questions/14494747/how-to-add-images-to-readme-md-on-github [Accessed 23 Apr. 2022].
+
+Stokes, J. (2017). emoji_regex | RubyGems.org | your community gem host. [online] rubygems.org. Available at: https://rubygems.org/gems/emoji_regex [Accessed 23 Apr. 2022].
+
+szabgab (2015). ARGV - the command line arguments of a Ruby program. [online] Code Maven. Available at: https://code-maven.com/argv-the-command-line-arguments-in-ruby [Accessed 23 Apr. 2022].
+
+Unsplash (2022). Photo by Jonathan Kemper on Unsplash. [online] unsplash.com. Available at: https://unsplash.com/photos/zQMN9fLJehM?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink [Accessed 23 Apr. 2022].
+
+wisecracker (2016). OSX afplay command line audio player _manual_. [online] www.unix.com. Available at: https://www.unix.com/os-x-apple-/267933-osx-afplay-command-line-audio-player-_manual_.html [Accessed 17 Apr. 2022].
+
+www.fesliyanstudios.com. (n.d.). It Is Coming by David Fesliyan - Royalty Free Music Download. [online] Available at: https://www.fesliyanstudios.com/royalty-free-music/download/it-is-coming/262 [Accessed 15 Apr. 2022].
+
+www.fesliyanstudios.com. (n.d.). Search Free Sound Effects | FesliyanStudios. [online] Available at: https://www.fesliyanstudios.com/sound-effects-search.php?q=unlock+lock [Accessed 15 Apr. 2022].
