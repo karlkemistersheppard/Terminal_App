@@ -59,7 +59,7 @@ end
 #END
 
 
-#CHARACTER CREATION MENUS
+#CHARACTER CREATION MENUS- Using TTY-Prompt to reduce the risk of the user skipping the creation process.
 def gender_selction
     require "tty-prompt"
     $prompt = TTY::Prompt.new
@@ -87,7 +87,7 @@ end
 #END
 
 
-#INTRO TO STORY
+#INTRO TO STORY- Uses String interoplation and colorize gem to add touches of color and styling.
 def intro_story
     puts "#{$character_name} can you hear me....." + "whispers".italic + " my name is #{$book_reader.yellow}, I am here to help you on your adventure...lets head to the edge of town to start our journey."
     sleep(4)
@@ -135,11 +135,11 @@ def user_choice_bridge_answer
         puts "You step out onto the bridge, and the support rope breaks... and you have fallen to your death #{$death_emoji}" + "(Restart Game)".red
         sleep(4)
         system "clear"
-        Process.kill("SIGKILL", $process_id)
-        puts $try_again
+        Process.kill("SIGKILL", $process_id) #Kills main audio directly connected to the kernal
+        puts $try_again #Calls the $global variable from the the $global_var.rb file to keep code dry due to the character size.
         puts argv_fail_message
-        $process_id = spawn "afplay -v 0.2 fail_effect.mp3"
-        restart_option_prompt
+        $process_id = spawn "afplay -v 0.2 fail_effect.mp3" #Additional mp3 effect added.
+        restart_option_prompt #initilizes the would you like to try again tty-prompt.
 
     elsif $user_choice1_left == "no"
         puts "You look around and notice a narrow path that leads to a cave near some large trees #{$tree}."
@@ -253,11 +253,11 @@ end
 #RIDDLES 1,2,3
 def riddles
     #RIDDLE ONE
-    correct_answer = "dragon"
-    user_guess = ""
-    current_count = 0
-    count_limit = 3
-    out_of_guesses = false
+    correct_answer = "DRAGON" #Storing the answer to the riddle inside the variable.
+    user_guess = "" #Stroting user guess into empty string.
+    current_count = 0 #Sets the current guess count to 0.
+    count_limit = 3 #Sets the count limit to 3.
+    out_of_guesses = false #Sets the value of out_of_guesses to false.
 
     puts "You wish to enter my Lair......."
     sleep(2)
@@ -279,7 +279,7 @@ def riddles
     while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
         if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
         puts "Guess: "
-        user_guess = STDIN.gets.chomp()
+        user_guess = STDIN.gets.chomp.upcase()
         current_count += 1 #increments their guess count by one
 
         else
@@ -305,7 +305,7 @@ def riddles
 
 
     #RIDDLE TWO
-    correct_answer = "echo"
+    correct_answer = "ECHO"
     user_guess = ""
     current_count = 0
     count_limit = 3
@@ -323,7 +323,7 @@ def riddles
     while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
         if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
         puts "Guess: "
-        user_guess = STDIN.gets.chomp()
+        user_guess = STDIN.gets.chomp.upcase()
         current_count += 1 #increments their guess count by one
 
         else
@@ -350,7 +350,7 @@ def riddles
 
 
     #RIDDLE THREE
-    correct_answer = "fire"
+    correct_answer = "FIRE"
     user_guess = ""
     current_count = 0
     count_limit = 3
@@ -370,7 +370,7 @@ def riddles
     while user_guess != correct_answer and !out_of_guesses #means while the secret word is not correct and the out of guesses has not been exceeded the loop continues
         if current_count < count_limit #this means if the guess count is less than guess limit they have guesses left for the game
         puts "Guess: "
-        user_guess = STDIN.gets.chomp()
+        user_guess = STDIN.gets.chomp.upcase()
         current_count += 1 #increments their guess count by one
 
         else
@@ -437,7 +437,7 @@ def dragon_run_direction_left
         require "tty-prompt"
         $prompt = TTY::Prompt.new
         choice = %w(yes no)
-        $user_choice_attack = $prompt.select("Do you pull use the #{$tool} and attack the dragon? #{$character_name}", choice)
+        $user_choice_attack = $prompt.select("Do you want to use the #{$tool} and attack the dragon? #{$character_name}", choice)
         
     
         if $user_choice_attack == "yes" && $potion != "Dragon-Breath"
@@ -494,7 +494,6 @@ def dragon_run_direction_left
                 puts "The dragon sits back and agrees to the offer, and allows you safe passage in and out of the lair"
                 sleep(3)
                 puts $thank_you
-                puts argv_fail_message
                 Process.kill("SIGKILL", $process_id)
                 restart_option_prompt
 
@@ -606,7 +605,7 @@ def restart_option_prompt
         system "clear"
         $process_id = spawn "afplay -v 0.2 It_Is_Coming_-_David_Fesliyan.mp3" 
         sleep(3)
-        puts intro_story
+        puts intro_story #Sends the user back to the location in which the its sitting in the index.rb so the process can restart.
     else
         puts "Hope to see you soon #{$character_name}!"
         sleep(3)

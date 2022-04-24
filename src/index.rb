@@ -27,7 +27,7 @@ puts tty_prompt_instructions
 system "clear"
 
 #LOGO AND INTRO MUSIC
-$process_id = spawn "afplay -v 0.2 It_Is_Coming_-_David_Fesliyan.mp3" 
+$process_id = spawn "afplay -v 0.2 It_Is_Coming_-_David_Fesliyan.mp3" #
 puts "\n""\n""\n"                                         
 puts $dragon_lair_logo # - File/Method Location * $global_var 28
 #END
@@ -58,8 +58,9 @@ system "clear"
 
 #INCLUDES CALLING $GLOBAL VARIABLES AND GEM UNICODE + TTY-PROMPT PROGRESS BAR GEM
 #Could not run the Progress Bar in its own method as its was causing strange print values to screen without error codes/prompts.
-puts "Congratulations #{$character_name}, you are the first #{$gender} #{$race} to embank on such a dangerous journey, you have decided to grab #{$tool} as your weapon to protect youself and have a vial of #{$potion} #{$potion_emoji}"
+puts "Congratulations #{$character_name}, you are the first #{$gender} #{$race} to embank on such a dangerous journey, you have decided to grab #{$tool} as your weapon to protect youself, and you took 1 vial of #{$potion} #{$potion_emoji}"
 puts "\n"
+sleep(10)
 bar = TTY::ProgressBar.new("Preparing your Adventure #{$character_name} [:bar]".colorize(:blue), total: 45) # Added TTY Progress bar showing quiz is downloading for UX
 45.times do
   sleep(0.1)
